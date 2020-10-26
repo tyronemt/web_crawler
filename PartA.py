@@ -1,7 +1,7 @@
 # Tyrone Tong - tyronet - 31413123
 
 from collections import defaultdict
-import re, os
+import re, os, sys
 
 
 
@@ -30,14 +30,13 @@ def prnt(map: defaultdict): # prints out the word frequencies map    (O(n log(n)
 
 
 if __name__ == "__main__":
-    while True:
-        path = input("Please input filepath : ")        #takes user inputs
-        if path.endswith('.txt'):
-            if os.path.exists(path):
-                lst = tokenize(path)
-                dict = computeWordFrequencies(lst)
-                prnt(dict)
-            else:
-                print("Could not find file:", path)
+    path = sys.argv[1]        #takes user inputs
+    if path.endswith('.txt'):
+        if os.path.exists(path):
+            lst = tokenize(path)
+            dict = computeWordFrequencies(lst)
+            prnt(dict)
         else:
-            print("Cannot open", path)
+            print("Could not find file:", path)
+    else:
+        print("Cannot open", path)
