@@ -1,6 +1,6 @@
 # Tyrone Tong - tyronet - 31413123
 
-import PartA, os
+import PartA, os, sys
 
 def common(pathA, pathB):              # Prints out amount of common words and common words in two text files O(N) runtime   
     i = 0
@@ -14,19 +14,18 @@ def common(pathA, pathB):              # Prints out amount of common words and c
 
 
 if __name__ == "__main__":
-    while True:
-        pathA = input("Please input filepath A : ")
-        if os.path.exists(pathA):
-            if pathA.endswith('.txt'):
-                pathB = input("Please input filepath B : ")
-                if os.path.exists(pathB):
-                    if pathB.endswith('.txt'):
-                        common(pathA,pathB)
-                    else:
-                        print("Could not open file:", pathB)
+    pathA = sys.argv[1]
+    if os.path.exists(pathA):
+        if pathA.endswith('.txt'):
+            pathB = sys.argv[2]
+            if os.path.exists(pathB):
+                if pathB.endswith('.txt'):
+                    common(pathA,pathB)
                 else:
-                    print("Could not find file:", pathB)
+                    print("Could not open file:", pathB)
             else:
-                print("Could not open file:", pathA)
+                print("Could not find file:", pathB)
         else:
-                print("Could not find file:", pathA)
+            print("Could not open file:", pathA)
+    else:
+            print("Could not find file:", pathA)
