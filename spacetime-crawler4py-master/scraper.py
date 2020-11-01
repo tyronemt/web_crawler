@@ -11,8 +11,8 @@ def scraper(url, resp):
 def extract_next_links(url, resp):
     parsed_url = urlparse(url)
     output_list = list()
-    raw_data = response.text
-    soup = beautifulSoup(raw_data, "lxml")
+    raw_data = resp.text
+    soup = beautifulSoup(raw_data, "lxml") #https://python.gotrained.com/beautifulsoup-extracting-urls/ implemented the algorithm to extract links using beautiful soup from this source
     a_tags = soup.find_all('a')
     for tag in a_tags:
         link  = tag.find_all('a') #extracts the links
