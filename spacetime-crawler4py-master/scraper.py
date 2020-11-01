@@ -1,12 +1,16 @@
 import re
 from urllib.parse import urlparse
 
+visited = []
+valid_netloc = ["ics.uci.edu","cs.uci.edu", "stat.uci.edu","informatics.uci.edu"]
+
 def scraper(url, resp):
     links = extract_next_links(url, resp)
     return [link for link in links if is_valid(link)]
 
 def extract_next_links(url, resp):
     parsed_url = urlparse(url)
+    
     # Implementation requred. #use the URL parameter and use beautiful soup to crawl each link that is embedded in the HTML file for the URL, then return the list of those links 
     return list()
 
@@ -28,3 +32,44 @@ def is_valid(url):
     except TypeError:
         print ("TypeError for ", parsed)
         raise
+
+def if_crawled(url):
+    if url[-1] == "/":
+        if url not in visited:
+            visited.append(url[:-1])
+            return True
+        else:
+            return False
+    else:
+        if url not in visited:
+            visited.append(url)
+            return True
+        else:
+            return False
+
+def check_netloc(parsed_url):
+
+    netloc = parsed_url.netloc 
+    netloc = netloc.strip("www.")
+
+    sd = ".".join(netloc.split("."))
+
+    if len(netloc.split(".")) >= 4:
+        sd = ".".join(netloc.split(".")[1:])
+
+    if netloc == "today.uci.edu" and "/department/information_computer_sciences" in parsed_url.path:
+        return True
+    
+    if netloc == "wics.ics.uci.edu" and "/events" in parsed_url.path:
+        return False
+
+     if netloc == "hack.ics.uci.edu" and "gallery" in parsed_url.path:
+        return False
+
+    if (netloc == "grape.ics.uci.edu") or (netloc == "intranet.ics.uci.edu") or (netloc == "archive.ics.uci.edu"):
+        return False
+    
+    for i in valid_netloc:
+        if sd == i:
+            return True
+
