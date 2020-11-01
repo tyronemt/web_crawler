@@ -10,6 +10,17 @@ def scraper(url, resp):
 
 def extract_next_links(url, resp):
     parsed_url = urlparse(url)
+    output_list = list()
+    raw_data = response.text
+    soup = beautifulSoup(raw_data, "lxml")
+    a_tags = soup.find_all('a')
+    for tag in a_tags:
+        link  = tag.find_all('a') #extracts the links
+        output_list.append(link)
+    return output_list
+    
+
+
     
     # Implementation requred. #use the URL parameter and use beautiful soup to crawl each link that is embedded in the HTML file for the URL, then return the list of those links 
     return list()
