@@ -94,7 +94,7 @@ def check_netloc(parsed_url):
     if netloc == "wics.ics.uci.edu" and "/events" in parsed_url.path:
         return False
 
-     if netloc == "hack.ics.uci.edu" and "gallery" in parsed_url.path:
+    if netloc == "hack.ics.uci.edu" and "gallery" in parsed_url.path:
         return False
 
     if (netloc == "grape.ics.uci.edu") or (netloc == "intranet.ics.uci.edu") or (netloc == "archive.ics.uci.edu"):
