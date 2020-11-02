@@ -8,12 +8,16 @@ def scraper(url, resp):
     links = extract_next_links(url, resp)
     return [link for link in links if is_valid(link)]
 
+
+
 def extract_next_links(url, resp):
     parsed_url = urlparse(url)
     output_list = list()
     raw_data = response.text
     soup = beautifulSoup(raw_data, "lxml")
-    a_tags = soup.find_all('a')
+
+    a_tags = soup.find_all('a'
+    )
     for tag in a_tags:
         link  = tag.find_all('a') #extracts the links
         output_list.append(link)
@@ -28,8 +32,13 @@ def extract_next_links(url, resp):
 def is_valid(url):
     try:
         parsed = urlparse(url)
+
+        if check_netloc(parsed) == False:
+            return False
+            
         if parsed.scheme not in set(["http", "https"]):
             return False
+
         return not re.match(
             r".*\.(css|js|bmp|gif|jpe?g|ico"
             + r"|png|tiff?|mid|mp2|mp3|mp4"
@@ -43,6 +52,8 @@ def is_valid(url):
     except TypeError:
         print ("TypeError for ", parsed)
         raise
+
+
 
 def if_crawled(url):
     if url[-1] == "/":
@@ -58,6 +69,8 @@ def if_crawled(url):
         else:
             return False
 
+
+
 def check_netloc(parsed_url):
 
     netloc = parsed_url.netloc 
@@ -67,6 +80,7 @@ def check_netloc(parsed_url):
 
     if len(netloc.split(".")) >= 4:
         sd = ".".join(netloc.split(".")[1:])
+        
 
     if netloc == "today.uci.edu" and "/department/information_computer_sciences" in parsed_url.path:
         return True
