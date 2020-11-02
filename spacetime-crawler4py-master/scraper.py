@@ -23,6 +23,7 @@ def extract_next_links(url, resp):
             for tag in a_tags:
                 link  = tag.get('href') #extracts the links
                 output_list.append(link) #adding links to list
+            print(output_list)
             return output_list
     except:
         print("error extracting next link")
