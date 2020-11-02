@@ -12,19 +12,27 @@ def scraper(url, resp):
 
 
 def extract_next_links(url, resp):
-    parsed_url = urlparse(url)
-    output_list = list()
-    raw_data = resp.raw_response.content
-    soup = beautifulSoup(raw_data, "lxml") #https://python.gotrained.com/beautifulsoup-extracting-urls/ implemented the algorithm to extract links using beautiful soup from this source
-    a_tags = soup.find_all('a')
-    for tag in a_tags:
-        link  = tag.get('href') #extracts the links
-        output_list.append(link) #adding links to list
-         # Implementation requred. #use the URL parameter and use beautiful soup to crawl each link that is embedded in the HTML file for the URL, then return the list of those links 
-    return output_list
- 
-   
+    try:
+        if is_valid(url) and if_crawled(url) and valid_response_status(resp):
+            parsed_url = urlparse(url)
+            output_list = list()
+            html_content = resp.raw_response.content
+            soup = BeautifulSoup(html_content, "lxml") #https://python.gotrained.com/beautifulsoup-extracting-urls/ implemented the algorithm to extract links using beautiful soup from this source
+            a_tags = soup.find_all('a')
+            for tag in a_tags:
+                link  = tag.get('href') #extracts the links
+                output_list.append(link) #adding links to list
+            return output_list
+    except:
+        print("error extracting next link")
 
+
+
+def valid_response_status(respo):
+    if 200<=respo.status<=299:
+        return True
+    else:
+        return False
     
     
 def is_valid(url):
