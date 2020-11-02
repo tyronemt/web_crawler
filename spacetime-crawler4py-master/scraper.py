@@ -20,7 +20,7 @@ def extract_next_links(url, resp):
     d = "https://" + parsed_url.netloc
     if is_valid(url) and if_not_crawled(url) and valid_response_status(resp):
         html_content = resp.raw_response.content
-        soup = BeautifulSoup(html_content, "lxml") #https://python.gotrained.com/beautifulsoup-extracting-urls/ implemented the algorithm to extract links using beautiful soup from this source
+        soup = BeautifulSoup(html_content, "lxml.parser") #https://python.gotrained.com/beautifulsoup-extracting-urls/ implemented the algorithm to extract links using beautiful soup from this source
         a_tags = soup.find_all('a')
         for tag in a_tags:
             link  = tag.get('href') #extracts the links
