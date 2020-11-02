@@ -13,10 +13,11 @@ def scraper(url, resp):
 
 
 def extract_next_links(url, resp):
+    output_list = list()
     print("hi")
     try:
         parsed_url = urlparse(url)
-        output_list = list()
+        
         print("starting")
         d = "https://" + parsed_url.netloc
         if is_valid(url) and if_not_crawled(url) and valid_response_status(resp):
@@ -30,9 +31,9 @@ def extract_next_links(url, resp):
                 link2 = urllib.parse.urljoin(d, link)
                 output_list.append(urldefrag(link2)[0]) #adding links to list
                 print("here")
-            return output_list
     except:
         print("error extracting next link")
+    return output_list
 
 
 
