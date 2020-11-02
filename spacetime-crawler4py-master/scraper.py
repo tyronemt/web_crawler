@@ -18,9 +18,10 @@ def extract_next_links(url, resp):
     soup = beautifulSoup(raw_data, "lxml") #https://python.gotrained.com/beautifulsoup-extracting-urls/ implemented the algorithm to extract links using beautiful soup from this source
     a_tags = soup.find_all('a')
     for tag in a_tags:
-        link  = tag.find_all('a') #extracts the links
+        link  = tag.get('href') #extracts the links
         output_list.append(link) #adding links to list
     return output_list
+    
     
     
 
