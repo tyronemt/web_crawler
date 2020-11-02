@@ -1,5 +1,5 @@
 import re
-from urllib.parse import urlparse
+from urllib.parse import urlparse, urldefrag
 from bs4 import BeautifulSoup
 
 visited = []
@@ -14,19 +14,18 @@ def scraper(url, resp):
 
 def extract_next_links(url, resp):
     try:
-        print("starting extract")
+        parsed_url = urlparse(url)
+        output_list = list()
+
+        d = "https://" + parsed_url.netloc
         if is_valid(url) and if_not_crawled(url) and valid_response_status(resp):
-            print("after if statement")
-            output_list = list()
             html_content = resp.raw_response.content
-            soup = BeautifulSoup(html_content, "lxml") #https://python.gotrained.com/beautifulsoup-extracting-urls/ implemented the algorithm to extract links using beautiful soup from this source
-            print(soup, "testing beauty soup")
+            soup = BeautifulSoup(html_content, "html.parser") #https://python.gotrained.com/beautifulsoup-extracting-urls/ implemented the algorithm to extract links using beautiful soup from this source
             a_tags = soup.find_all('a')
-            print(a_tags, "testing tags")
             for tag in a_tags:
                 link  = tag.get('href') #extracts the links
-                output_list.append(link) #adding links to list
-            print(output_list, "testing list")
+                link2 = urllib.parse.urljoin(d, link)
+                output_list.append(urldefrag(link2)[0]) #adding links to list
             return output_list
     except:
         print("error extracting next link")
