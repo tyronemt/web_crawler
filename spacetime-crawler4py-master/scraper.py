@@ -13,7 +13,7 @@ def scraper(url, resp):
 
 def extract_next_links(url, resp):
     try:
-        if is_valid(url) and if_crawled(url) and valid_response_status(resp):
+        if is_valid(url) and if_not_crawled(url) and valid_response_status(resp):
             parsed_url = urlparse(url)
             output_list = list()
             html_content = resp.raw_response.content
@@ -61,7 +61,7 @@ def is_valid(url):
 
 
 
-def if_crawled(url):
+def if_not_crawled(url):
     if url[-1] == "/":
         if url not in visited:
             visited.append(url[:-1])
