@@ -14,8 +14,9 @@ def scraper(url, resp):
 
 def extract_next_links(url, resp):
     try:
+        print("starting extract")
         if is_valid(url) and if_not_crawled(url) and valid_response_status(resp):
-            parsed_url = urlparse(url)
+            print("after if statement")
             output_list = list()
             html_content = resp.raw_response.content
             soup = BeautifulSoup(html_content, "lxml") #https://python.gotrained.com/beautifulsoup-extracting-urls/ implemented the algorithm to extract links using beautiful soup from this source
