@@ -47,13 +47,6 @@ def extract_next_links(url, resp):
     except:
         print("error extracting next link")
 
-def valid_response_status(respo):
-    if 200<=respo.status<=299:
-        return True
-    else:
-        return False
-
-
 
 def valid_response_status(respo):
     if 200<=respo.status<=299:
