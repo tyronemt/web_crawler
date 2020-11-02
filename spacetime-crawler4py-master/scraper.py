@@ -1,5 +1,6 @@
 import re
-from urllib.parse import urlparse, urldefrag
+from urllib.parse import urlparse,urldefrag
+import urllib
 from bs4 import BeautifulSoup
 
 visited = []
