@@ -89,8 +89,7 @@ def check_netloc(parsed_url):
         sd = ".".join(netloc.split(".")[1:])
         
 
-    if netloc == "today.uci.edu" and "/department/information_computer_sciences" in parsed_url.path:
-        return True
+
     
     if netloc == "wics.ics.uci.edu" and "/events" in parsed_url.path:
         return False
@@ -100,8 +99,12 @@ def check_netloc(parsed_url):
 
     if (netloc == "grape.ics.uci.edu") or (netloc == "intranet.ics.uci.edu") or (netloc == "archive.ics.uci.edu"):
         return False
-    
+
+    if netloc == "today.uci.edu" and "/department/information_computer_sciences" in parsed_url.path:
+        return True
+
     for i in valid_netloc:
         if sd == i:
             return True
+
 
