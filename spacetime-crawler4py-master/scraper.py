@@ -10,6 +10,7 @@ def scraper(url, resp):
 
 
 
+
 def extract_next_links(url, resp):
     parsed_url = urlparse(url)
     output_list = list()
@@ -20,6 +21,7 @@ def extract_next_links(url, resp):
         link  = tag.find_all('a') #extracts the links
         output_list.append(link) #adding links to list
     return output_list
+    
     
 
 
