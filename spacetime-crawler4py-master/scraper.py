@@ -1,6 +1,6 @@
 import re
 from urllib.parse import urlparse
-from bs4 import beautifulsoup
+from bs4 import BeautifulSoup
 
 visited = []
 valid_netloc = ["ics.uci.edu","cs.uci.edu", "stat.uci.edu","informatics.uci.edu"]
