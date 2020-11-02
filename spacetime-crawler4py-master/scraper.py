@@ -20,16 +20,13 @@ def extract_next_links(url, resp):
     for tag in a_tags:
         link  = tag.get('href') #extracts the links
         output_list.append(link) #adding links to list
+         # Implementation requred. #use the URL parameter and use beautiful soup to crawl each link that is embedded in the HTML file for the URL, then return the list of those links 
     return output_list
-    
-    
-    
-
+ 
+   
 
     
-    # Implementation requred. #use the URL parameter and use beautiful soup to crawl each link that is embedded in the HTML file for the URL, then return the list of those links 
-    return list()
-
+    
 def is_valid(url):
     try:
         parsed = urlparse(url)
