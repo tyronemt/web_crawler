@@ -1,5 +1,5 @@
 import re
-from urllib.parse import urlparse
+from urllib.parse import urlparse,urldefrag
 import urllib
 from bs4 import BeautifulSoup
 
@@ -24,13 +24,10 @@ def extract_next_links(url, resp):
         for tag in a_tags:
             link  = tag.get('href') #extracts the links
             link2 = urllib.parse.urljoin(d, link)
-            output_list.append(de_fragger(link2)) #adding links to list
+            output_list.append(urldefrag(link2)[0]) #adding links to list
     return output_list
 
 
-
-def de_fragger(link):
-    return link[:link.find("#")]
 
 def valid_response_status(respo):
     if 200<=respo.status<=299:
