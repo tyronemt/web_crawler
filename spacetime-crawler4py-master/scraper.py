@@ -1,5 +1,5 @@
 import re
-from urllib.parse import urlparse,urldefrag
+from urllib.parse import urlparse
 import urllib
 from bs4 import BeautifulSoup
 
@@ -19,16 +19,18 @@ def extract_next_links(url, resp):
 
     d = "https://" + parsed_url.netloc
     if is_valid(url) and if_not_crawled(url) and valid_response_status(resp):
-        html_content = resp.raw_response.content
-        soup = BeautifulSoup(html_content, "html.parser") #https://python.gotrained.com/beautifulsoup-extracting-urls/ implemented the algorithm to extract links using beautiful soup from this source
+        soup = BeautifulSoup(resp.raw_response.content, "html.parser") #https://python.gotrained.com/beautifulsoup-extracting-urls/ implemented the algorithm to extract links using beautiful soup from this source
         a_tags = soup.find_all('a')
         for tag in a_tags:
             link  = tag.get('href') #extracts the links
             link2 = urllib.parse.urljoin(d, link)
-            output_list.append(urldefrag(link2)[0]) #adding links to list
+            output_list.append(de_fragger(link2)) #adding links to list
     return output_list
 
 
+
+def de_fragger(link):
+    return link[:link.find("#")]
 
 def valid_response_status(respo):
     if 200<=respo.status<=299:
