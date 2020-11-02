@@ -6,6 +6,7 @@ visited = []
 valid_netloc = ["ics.uci.edu","cs.uci.edu", "stat.uci.edu","informatics.uci.edu"]
 
 def scraper(url, resp):
+    print("howdy")
     links = extract_next_links(url, resp)
     return [link for link in links if is_valid(link)]
 
