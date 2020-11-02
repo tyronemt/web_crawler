@@ -26,6 +26,7 @@ def extract_next_links(url, resp):
                 link  = tag.get('href') #extracts the links
                 link2 = urllib.parse.urljoin(d, link)
                 output_list.append(urldefrag(link2)[0]) #adding links to list
+                print(urldefrag(link2)[0])
             return output_list
     except:
         print("error extracting next link")
