@@ -12,28 +12,47 @@ def scraper(url, resp):
 
 
 
-def extract_next_links(url, resp):
-    output_list = list()
-    print("hi")
-    try:
-        parsed_url = urlparse(url)
+# def extract_next_links(url, resp):
+#     output_list = list()
+#     try:
+#         parsed_url = urlparse(url)
         
-        print("starting")
-        d = "https://" + parsed_url.netloc
-        if is_valid(url) and if_not_crawled(url) and valid_response_status(resp):
-            print("in if statement")
+#         d = "https://" + parsed_url.netloc
+#         if is_valid(url) and if_not_crawled(url) and valid_response_status(resp):
+#             print("in if statement")
+#             html_content = resp.raw_response.content
+#             soup = BeautifulSoup(html_content, "html.parser") #https://python.gotrained.com/beautifulsoup-extracting-urls/ implemented the algorithm to extract links using beautiful soup from this source
+#             a_tags = soup.find_all('a')
+#             for tag in a_tags:
+#                 print(tag)
+#                 link  = tag.get('href') #extracts the links
+#                 link2 = urllib.parse.urljoin(d, link)
+#                 output_list.append(urldefrag(link2)[0]) #adding links to list
+#                 print("here")
+#     except:
+#         print("error extracting next link")
+#     return output_list
+
+def extract_next_links(url, resp):
+    try:
+        if is_valid(url) and if_crawled(url) and valid_response_status(resp):
+            parsed_url = urlparse(url)
+            output_list = list()
             html_content = resp.raw_response.content
-            soup = BeautifulSoup(html_content, "html.parser") #https://python.gotrained.com/beautifulsoup-extracting-urls/ implemented the algorithm to extract links using beautiful soup from this source
+            soup = BeautifulSoup(html_content, "lxml") #https://python.gotrained.com/beautifulsoup-extracting-urls/ implemented the algorithm to extract links using beautiful soup from this source
             a_tags = soup.find_all('a')
             for tag in a_tags:
-                print(tag)
                 link  = tag.get('href') #extracts the links
-                link2 = urllib.parse.urljoin(d, link)
-                output_list.append(urldefrag(link2)[0]) #adding links to list
-                print("here")
+                output_list.append(link) #adding links to list
+            return output_list
     except:
         print("error extracting next link")
-    return output_list
+
+def valid_response_status(respo):
+    if 200<=respo.status<=299:
+        return True
+    else:
+        return False
 
 
 
