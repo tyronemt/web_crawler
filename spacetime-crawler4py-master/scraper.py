@@ -16,15 +16,13 @@ def scraper(url, resp):
 def extract_next_links(url, resp):
     parsed_url = urlparse(url)
     output_list = list()
-
     d = "https://" + parsed_url.netloc
     if is_valid(url) and if_not_crawled(url) and valid_response_status(resp):
         soup = BeautifulSoup(resp.raw_response.content, "html.parser") #https://python.gotrained.com/beautifulsoup-extracting-urls/ implemented the algorithm to extract links using beautiful soup from this source
         a_tags = soup.find_all('a')
         for tag in a_tags:
-            link  = tag.get('href') #extracts the links
-            link2 = urllib.parse.urljoin(d, link)
-            output_list.append(urldefrag(link2)[0]) #adding links to list
+            link = urllib.parse.urljoin(d, tag.get('href')) #extracts the links from href and parses them
+            output_list.append(urldefrag(link)[0]) #adding links to list after defragging the URL
     return output_list
 
 
@@ -88,9 +86,6 @@ def check_netloc(parsed_url):
     if len(netloc.split(".")) >= 4:
         sd = ".".join(netloc.split(".")[1:])
         
-
-
-    
     if netloc == "wics.ics.uci.edu" and "/events" in parsed_url.path:
         return False
 
