@@ -13,6 +13,13 @@ valid_netloc = ["ics.uci.edu","cs.uci.edu", "stat.uci.edu","informatics.uci.edu"
 #         "epub","jar","csv","zip","rar","txt","py","rkt", "json", "calendar"]
 
 
+# Honor the politeness delay for each site
+# Crawl all pages with high textual information content
+# Detect and avoid infinite traps
+# Detect and avoid sets of similar pages with no information
+# Detect and avoid dead URLs that return a 200 status but no data (click here to see what the different HTTP status codes mean (Links to an external site.))
+# Detect and avoid crawling very large files, especially if they have low information value
+
 def scraper(url, resp):
     links = extract_next_links(url, resp)
     return [link for link in links if is_valid(link)]
@@ -22,11 +29,12 @@ def extract_next_links(url, resp):
     parsed_url = urlparse(url)
     output_list = list()
     d = "https://" + parsed_url.netloc
-    if is_valid(url) and if_not_crawled(url, resp):
-        soup = BeautifulSoup(resp.raw_response.content, "html.parser") #https://python.gotrained.com/beautifulsoup-extracting-urls/ implemented the algorithm to extract links using beautiful soup from this source
-        a_tags = soup.find_all('a')
-        for tag in a_tags:
-            output_list.append(urllib.parse.urljoin(d, tag.get('href')).split('#')[0]) #adding links to list after defragging the URL
+    if is_valid(url):
+        if if_not_crawled(url, resp):
+            soup = BeautifulSoup(resp.raw_response.content, "html.parser") #https://python.gotrained.com/beautifulsoup-extracting-urls/ implemented the algorithm to extract links using beautiful soup from this source
+            a_tags = soup.find_all('a')
+            for tag in a_tags:
+                output_list.append(urllib.parse.urljoin(d, tag.get('href')).split('#')[0]) #adding links to list after defragging the URL
     return output_list
 
 
