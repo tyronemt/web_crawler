@@ -90,14 +90,13 @@ def check_netloc(parsed_url):
     netloc = parsed_url.netloc 
     netloc = netloc.strip("www.")
 
-    sd = ".".join(netloc.split("."))
-
+    sd = netloc.split(".")
 
     for i in valid_netloc:
         if sd == i:
             return True
 
-    if len(netloc.split(".")) >= 4:
+    if len(sd) >= 4:
         sd = ".".join(netloc.split(".")[1:])
 
     if netloc == "today.uci.edu" and "/department/information_computer_sciences" in parsed_url.path:
