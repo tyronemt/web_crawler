@@ -23,9 +23,8 @@ def extract_next_links(url, resp):
         soup = BeautifulSoup(html_content, "html.parser") #https://python.gotrained.com/beautifulsoup-extracting-urls/ implemented the algorithm to extract links using beautiful soup from this source
         a_tags = soup.find_all('a')
         for tag in a_tags:
-            link  = tag.get('href') #extracts the links
-            link2 = urllib.parse.urljoin(d, link)
-            output_list.append(urldefrag(link2)[0]) #adding links to list
+            link = urllib.parse.urljoin(d, tag.get('href'))
+            output_list.append(urldefrag(link)[0]) #adding links to list
     return output_list
 
 
@@ -88,7 +87,10 @@ def check_netloc(parsed_url):
 
     if len(netloc.split(".")) >= 4:
         sd = ".".join(netloc.split(".")[1:])
-        
+
+    for i in valid_netloc:
+        if sd == i:
+            return True   
 
     if netloc == "today.uci.edu" and "/department/information_computer_sciences" in parsed_url.path:
         return True
@@ -102,7 +104,6 @@ def check_netloc(parsed_url):
     if (netloc == "grape.ics.uci.edu") or (netloc == "intranet.ics.uci.edu") or (netloc == "archive.ics.uci.edu"):
         return False
     
-    for i in valid_netloc:
-        if sd == i:
-            return True
+    return False
+    
 
