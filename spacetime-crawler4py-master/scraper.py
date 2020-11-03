@@ -7,10 +7,6 @@ from urllib.parse import urlparse, urldefrag
 # SETTING GLOBAL VARIABLES
 visited_urls = []
 valid_netloc = ["ics.uci.edu","cs.uci.edu", "stat.uci.edu","informatics.uci.edu"]
-# invalid =["css","js","bmp","gif","jpeg","png","mp2",
-#         "mp3","mp4","wav","avi","mov","mpeg","pdf","ps","ppt","pptx",
-#         "doc","docx","xls","data","dat","exe","tar","msi","bin","psd",
-#         "epub","jar","csv","zip","rar","txt","py","rkt", "json", "calendar"]
 
 
 # Honor the politeness delay for each site
@@ -112,16 +108,8 @@ def check_netloc(parsed_url):
     if len(netloc.split(".")) >= 4:
         sd = ".".join(netloc.split(".")[1:])
         
-    # if netloc == "wics.ics.uci.edu" and "/events" in parsed_url.path:
-    #     return False
-
-    # if netloc == "hack.ics.uci.edu" and "gallery" in parsed_url.path:
-    #     return False
-
-    # if (netloc == "grape.ics.uci.edu") or (netloc == "intranet.ics.uci.edu") or (netloc == "archive.ics.uci.edu"):
-    #     return False
-
     if netloc == "today.uci.edu" and "/department/information_computer_sciences" in parsed_url.path:
+        print("HERE>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>")
         return True
 
     return False
