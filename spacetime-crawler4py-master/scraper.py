@@ -17,7 +17,7 @@ def extract_next_links(url, resp):
     parsed_url = urlparse(url)
     output_list = list()
     d = "https://" + parsed_url.netloc
-    if is_valid(url) and if_not_crawled(url) and valid_response_status(resp):
+    if is_valid(url) and if_not_crawled(url, resp):
         soup = BeautifulSoup(resp.raw_response.content, "html.parser") #https://python.gotrained.com/beautifulsoup-extracting-urls/ implemented the algorithm to extract links using beautiful soup from this source
         a_tags = soup.find_all('a')
         for tag in a_tags:
@@ -60,19 +60,22 @@ def is_valid(url):
 
 
 
-def if_not_crawled(url):
-    if url[-1] == "/":
-        if url not in visited:
-            visited.append(url[:-1])
-            return True
+def if_not_crawled(url, respons):
+    if valid_response_status(respons):
+        if url[-1] == "/":
+            if url not in visited:
+                visited.append(url[:-1])
+                return True
+            else:
+                return False
         else:
-            return False
+            if url not in visited:
+                visited.append(url)
+                return True
+            else:
+                return False
     else:
-        if url not in visited:
-            visited.append(url)
-            return True
-        else:
-            return False
+        return False
 
 
 
