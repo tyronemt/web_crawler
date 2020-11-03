@@ -26,10 +26,10 @@ def scraper(url, resp):
 
 
 def extract_next_links(url, resp):
-    parsed_url = urlparse(url)
     output_list = list()
     d = "https://" + parsed_url.netloc
     if is_valid(url):
+        parsed_url = urlparse(url)
         if if_not_crawled(url, resp):
             soup = BeautifulSoup(resp.raw_response.content, "html.parser") #https://python.gotrained.com/beautifulsoup-extracting-urls/ implemented the algorithm to extract links using beautiful soup from this source
             a_tags = soup.find_all('a')
