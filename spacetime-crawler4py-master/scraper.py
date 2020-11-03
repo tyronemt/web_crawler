@@ -5,6 +5,11 @@ from bs4 import BeautifulSoup
 
 visited = []
 valid_netloc = ["ics.uci.edu","cs.uci.edu", "stat.uci.edu","informatics.uci.edu"]
+# invalid =["css","js","bmp","gif","jpeg","png","mp2",
+#         "mp3","mp4","wav","avi","mov","mpeg","pdf","ps","ppt","pptx",
+#         "doc","docx","xls","data","dat","exe","tar","msi","bin","psd",
+#         "epub","jar","csv","zip","rar","txt","py","rkt", "json", "calendar"]
+
 
 def scraper(url, resp):
     links = extract_next_links(url, resp)
@@ -42,6 +47,10 @@ def is_valid(url):
         if parsed.scheme not in set(["http", "https"]):
             return False
 
+
+        if "calendar" in parsed.query or "calendar" in parsed.path:
+            return False
+            
         return not re.match(
             r".*\.(css|js|bmp|gif|jpe?g|ico"
             + r"|png|tiff?|mid|mp2|mp3|mp4"
@@ -51,6 +60,8 @@ def is_valid(url):
             + r"|epub|dll|cnf|tgz|sha1"
             + r"|thmx|mso|arff|rtf|jar|csv"
             + r"|rm|smil|wmv|swf|wma|zip|rar|gz)$", parsed.path.lower())
+
+        
 
     except TypeError:
         print ("TypeError for ", parsed)
