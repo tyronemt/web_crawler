@@ -11,20 +11,16 @@ def scraper(url, resp):
     return [link for link in links if is_valid(link)]
 
 
-
-
 def extract_next_links(url, resp):
     parsed_url = urlparse(url)
     output_list = list()
-
     d = "https://" + parsed_url.netloc
-    if is_valid(url) and if_not_crawled(url) and valid_response_status(resp):
-        html_content = resp.raw_response.content
-        soup = BeautifulSoup(html_content, "html.parser") #https://python.gotrained.com/beautifulsoup-extracting-urls/ implemented the algorithm to extract links using beautiful soup from this source
+    if is_valid(url) and if_not_crawled(url, resp):
+        soup = BeautifulSoup(resp.raw_response.content, "html.parser") #https://python.gotrained.com/beautifulsoup-extracting-urls/ implemented the algorithm to extract links using beautiful soup from this source
         a_tags = soup.find_all('a')
         for tag in a_tags:
-            link = urllib.parse.urljoin(d, tag.get('href'))
-            output_list.append(urldefrag(link)[0]) #adding links to list
+            link = urllib.parse.urljoin(d, tag.get('href')) #extracts the links from href and parses them
+            output_list.append(link.split('#')[0]) #adding links to list after defragging the URL
     return output_list
 
 
@@ -62,19 +58,22 @@ def is_valid(url):
 
 
 
-def if_not_crawled(url):
-    if url[-1] == "/":
-        if url not in visited:
-            visited.append(url[:-1])
-            return True
+def if_not_crawled(url, respons):
+    if valid_response_status(respons):
+        if url[-1] == "/":
+            if url not in visited:
+                visited.append(url[:-1])
+                return True
+            else:
+                return False
         else:
-            return False
+            if url not in visited:
+                visited.append(url)
+                return True
+            else:
+                return False
     else:
-        if url not in visited:
-            visited.append(url)
-            return True
-        else:
-            return False
+        return False
 
 
 
@@ -87,14 +86,7 @@ def check_netloc(parsed_url):
 
     if len(netloc.split(".")) >= 4:
         sd = ".".join(netloc.split(".")[1:])
-
-    for i in valid_netloc:
-        if sd == i:
-            return True   
-
-    if netloc == "today.uci.edu" and "/department/information_computer_sciences" in parsed_url.path:
-        return True
-    
+        
     if netloc == "wics.ics.uci.edu" and "/events" in parsed_url.path:
         return False
 
@@ -103,7 +95,12 @@ def check_netloc(parsed_url):
 
     if (netloc == "grape.ics.uci.edu") or (netloc == "intranet.ics.uci.edu") or (netloc == "archive.ics.uci.edu"):
         return False
-    
-    return False
-    
+
+    if netloc == "today.uci.edu" and "/department/information_computer_sciences" in parsed_url.path:
+        return True
+
+    for i in valid_netloc:
+        if sd == i:
+            return True
+
 
