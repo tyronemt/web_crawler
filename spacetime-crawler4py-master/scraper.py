@@ -40,15 +40,13 @@ def is_valid(url):
     try:
         parsed = urlparse(url)
 
-        if check_netloc(parsed) == False:
+        if (check_netloc(parsed) == False) or ("calendar" in parsed.path):
             return False
             
         if parsed.scheme not in set(["http", "https"]):
             return False
 
 
-        if "calendar" in parsed.query or "calendar" in parsed.path:
-            return False
 
         return not re.match(
             r".*\.(css|js|bmp|gif|jpe?g|ico"
@@ -101,15 +99,6 @@ def check_netloc(parsed_url):
 
     if len(netloc.split(".")) >= 4:
         sd = ".".join(netloc.split(".")[1:])
-        
-    # if netloc == "wics.ics.uci.edu" and "/events" in parsed_url.path:
-    #     return False
-
-    # if netloc == "hack.ics.uci.edu" and "gallery" in parsed_url.path:
-    #     return False
-
-    # if (netloc == "grape.ics.uci.edu") or (netloc == "intranet.ics.uci.edu") or (netloc == "archive.ics.uci.edu"):
-    #     return False
 
     if netloc == "today.uci.edu" and "/department/information_computer_sciences" in parsed_url.path:
         return True
