@@ -24,8 +24,7 @@ def extract_next_links(url, resp):
         soup = BeautifulSoup(resp.raw_response.content, "html.parser") #https://python.gotrained.com/beautifulsoup-extracting-urls/ implemented the algorithm to extract links using beautiful soup from this source
         a_tags = soup.find_all('a')
         for tag in a_tags:
-            link = urllib.parse.urljoin(d, tag.get('href')) #extracts the links from href and parses them
-            output_list.append(link.split('#')[0]) #adding links to list after defragging the URL
+            output_list.append(urllib.parse.urljoin(d, tag.get('href')).split('#')[0]) #adding links to list after defragging the URL
     return output_list
 
 
@@ -50,7 +49,7 @@ def is_valid(url):
 
         if "calendar" in parsed.query or "calendar" in parsed.path:
             return False
-            
+
         return not re.match(
             r".*\.(css|js|bmp|gif|jpe?g|ico"
             + r"|png|tiff?|mid|mp2|mp3|mp4"
