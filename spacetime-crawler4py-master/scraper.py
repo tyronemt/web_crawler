@@ -1,9 +1,11 @@
 import re
-from urllib.parse import urlparse,urldefrag
-import urllib
 from bs4 import BeautifulSoup
+import urllib
+from urllib.parse import urlparse, urldefrag
 
-visited = []
+
+# SETTING GLOBAL VARIABLES
+visited_urls = []
 valid_netloc = ["ics.uci.edu","cs.uci.edu", "stat.uci.edu","informatics.uci.edu"]
 # invalid =["css","js","bmp","gif","jpeg","png","mp2",
 #         "mp3","mp4","wav","avi","mov","mpeg","pdf","ps","ppt","pptx",
@@ -40,13 +42,15 @@ def is_valid(url):
     try:
         parsed = urlparse(url)
 
-        if (check_netloc(parsed) == False) or ("calendar" in parsed.path):
+        if check_netloc(parsed) == False:
             return False
             
         if parsed.scheme not in set(["http", "https"]):
             return False
 
 
+        if "calendar" in parsed.query or "calendar" in parsed.path:
+            return False
 
         return not re.match(
             r".*\.(css|js|bmp|gif|jpe?g|ico"
@@ -69,14 +73,14 @@ def is_valid(url):
 def if_not_crawled(url, respons):
     if valid_response_status(respons):
         if url[-1] == "/":
-            if url not in visited:
-                visited.append(url[:-1])
+            if url not in visited_urls:
+                visited_urls.append(url[:-1])
                 return True
             else:
                 return False
         else:
-            if url not in visited:
-                visited.append(url)
+            if url not in visited_urls:
+                visited_urls.append(url)
                 return True
             else:
                 return False
@@ -99,6 +103,15 @@ def check_netloc(parsed_url):
 
     if len(netloc.split(".")) >= 4:
         sd = ".".join(netloc.split(".")[1:])
+        
+    # if netloc == "wics.ics.uci.edu" and "/events" in parsed_url.path:
+    #     return False
+
+    # if netloc == "hack.ics.uci.edu" and "gallery" in parsed_url.path:
+    #     return False
+
+    # if (netloc == "grape.ics.uci.edu") or (netloc == "intranet.ics.uci.edu") or (netloc == "archive.ics.uci.edu"):
+    #     return False
 
     if netloc == "today.uci.edu" and "/department/information_computer_sciences" in parsed_url.path:
         return True
