@@ -27,11 +27,14 @@ def extract_next_links(url, resp):
     if is_valid(url):
         parsed_url = urlparse(url)
         if if_not_crawled(url, resp):
-            soup = BeautifulSoup(resp.raw_response.content, "html.parser") #https://python.gotrained.com/beautifulsoup-extracting-urls/ implemented the algorithm to extract links using beautiful soup from this source
-            a_tags = soup.find_all('a')
-            for tag in a_tags:
-                output_list.append(urllib.parse.urljoin(d, tag.get('href')).split('#')[0]) #adding links to list after defragging the URL
-    return output_list
+            try:
+                soup = BeautifulSoup(resp.raw_response.content, "html.parser") #https://python.gotrained.com/beautifulsoup-extracting-urls/ implemented the algorithm to extract links using beautiful soup from this source
+                a_tags = soup.find_all('a')
+                for tag in a_tags:
+                    output_list.append(urllib.parse.urljoin(d, tag.get('href')).split('#')[0]) #adding links to list after defragging the URL
+            except:
+                print("Error processing next URLs")
+    return output_list #returns empty list if the URL is crawled or if the URL is not valid
 
 
 
