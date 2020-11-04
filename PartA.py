@@ -3,8 +3,6 @@
 from collections import defaultdict
 import re, os, sys
 
-
-
 def tokenize(path: str): #returns a list of tokens (O(N) runtime)
     lst =[]
     with open(path,encoding='utf8') as txt: 

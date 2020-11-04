@@ -121,15 +121,18 @@ def check_netloc(parsed_url):
 
     sd = ".".join(netloc.split("."))
 
+    if len(netloc.split(".")) >= 4:
+        sd = ".".join(netloc.split(".")[1:])
+
+    if netloc == "today.uci.edu" and "/department/information_computer_sciences" in parsed_url.path:
+        return True
 
     for i in valid_netloc:
         if sd == i:
             return True
 
-    if len(netloc.split(".")) >= 4:
-        sd = ".".join(netloc.split(".")[1:])
+    
         
-    if netloc == "today.uci.edu" and "/department/information_computer_sciences" in parsed_url.path:
-        return True
+    
 
     return False
