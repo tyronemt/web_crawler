@@ -6,11 +6,11 @@ from urllib.parse import urlparse, urldefrag
 
 # SETTING GLOBAL VARIABLES
 visited_urls = []
-valid_netloc = ["ics.uci.edu","cs.uci.edu", "stat.uci.edu","informatics.uci.edu"]
+valid_netloc = ["ics.uci.edu","cs.uci.edu","stat.uci.edu","informatics.uci.edu"]
 
-no_list =["css","js","bmp","pptx","doc","docx","xls","data","dat","gif","gz","svg","txt","py","rkt","json","pdf","jpeg","ico","png",
+no_list =["calendar","css","js","bmp","pptx","doc","docx","xls","data","dat","gif","gz","svg","txt","py","rkt","json","pdf","jpeg","ico","png",
             "mp2","mp3","mp4","wav","avi","mov","pdf","ps","eps","tex","ppt","exe",
-            "tar","msi","bin","psd","dmg","epub","jar","csv","zip","rar","wp-content", "calendar"]
+            "tar","msi","bin","psd","dmg","epub","jar","csv","zip","rar","wp-content"]
 
 
 # Honor the politeness delay for each site
