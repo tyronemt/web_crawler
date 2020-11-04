@@ -143,11 +143,17 @@ def check_netloc(parsed_url):
     if len(netloc.split(".")) >= 4:
         sd = ".".join(netloc.split(".")[1:])
 
+
+    if netloc == "wics.ics.uci.edu" and \
+       "/events" in parsed_url.path:
+        return False
+
     if netloc == "today.uci.edu" and "/department/information_computer_sciences" in parsed_url.path:
         return True
-    if netloc == "wics.ics.uci.edu" and "/events" in parsed_url.path:
-        return False
-    if netloc == "hack.ics.uci.edu" and "/gallery" in parsed_url.path:
+
+   
+
+    if netloc == "hack.ics.uci.edu" and "gallery" in parsed_url.path:
         return False
     
     for i in skip:
