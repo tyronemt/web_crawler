@@ -51,8 +51,10 @@ def extract_next_links(url, resp):
                     text_split = text.split()
                     word_list += text_split
 
-                longest_page_file.write(url + ' ' + str(len(word_list)) +'\n')
-                content_file.write(str(word_list) + 'n')
+                # DO NOT INCLUDE web pages with less than 10 tokens ("too low content")
+                if (len(word_list) < 10):
+                    longest_page_file.write(url + ' ' + str(len(word_list)) +'\n')
+                    content_file.write(str(word_list) + 'n')
 
 
                 # iterate through tags to obtain links present on web page
