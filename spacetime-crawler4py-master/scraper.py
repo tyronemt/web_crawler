@@ -23,7 +23,6 @@ def scraper(url, resp):
 
 def extract_next_links(url, resp):
     output_list = list()
-    d = "https://" + parsed_url.netloc
     if is_valid(url):
         parsed_url = urlparse(url)
         if if_not_crawled(url, resp):
@@ -31,6 +30,7 @@ def extract_next_links(url, resp):
                 soup = BeautifulSoup(resp.raw_response.content, "html.parser") #https://python.gotrained.com/beautifulsoup-extracting-urls/ implemented the algorithm to extract links using beautiful soup from this source
                 a_tags = soup.find_all('a')
                 for tag in a_tags:
+                    d = "https://" + parsed_url.netloc
                     output_list.append(urllib.parse.urljoin(d, tag.get('href')).split('#')[0]) #adding links to list after defragging the URL
             except:
                 print("Error processing next URLs")
