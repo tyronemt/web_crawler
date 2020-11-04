@@ -53,11 +53,11 @@ def extract_next_links(url, resp):
 
                 # DO NOT INCLUDE web pages with less than 10 tokens ("too low content")
                 if (len(word_list) > 10):
-                    longest_page_file.write(url + ' ' + str(len(word_list)) +'\n')
+                    longest_page_file.write(url + '\n' + str(len(word_list)) +'\n')
                     content_file.write(str(word_list) + 'n')
 
 
-                # iterate through tags to obtain links present on web page
+                # iterate through tags to obtain links present on web 
                 for tag in a_tags:
                     list_links.append(urllib.parse.urljoin(d, tag.get('href')).split('#')[0]) #adding links to list after defragging the URL
                     URLs_file.write(url + '\n')
