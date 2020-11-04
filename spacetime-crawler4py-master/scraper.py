@@ -27,7 +27,11 @@ def scraper(url, resp):
 
 def extract_next_links(url, resp):
     list_links = []
-    file = open("unique_URLs.txt", 'a')
+    word_list = []
+    unique_URLs_file = open("unique_URLs.txt", 'a', encoding='utf-8')
+    longest_page_file = open("longest_page.txt", 'a', encoding='utf-8')
+    content_file = open("content.txt", 'a', encoding='utf-8')
+
     if is_valid(url):
         parsed_url = urlparse(url)
         d = "https://" + parsed_url.netloc
@@ -38,19 +42,31 @@ def extract_next_links(url, resp):
                 soup = BeautifulSoup(resp.raw_response.content, "html.parser")
                 a_tags = soup.find_all('a')
 
-                # CITE: https://matix.io/extract-text-from-webpage-using-beautifulsoup-and-python/
                 # extracting all text from webpage
                 text_list = soup.text # returns string of all readable text 
                 text_list = text_list.split('\n')
-                text_list = text_list.split()
+                
+                for text in text_list:
+                    text = re.sub(r"[^a-zA-Z0-9 :]", " ", text)
+                    text_split = text.split()
+                    word_list += text_split
+
+                longest_page_file.write(url + ' ' + str(len(word_list)) +'\n')
+                content_file.write(str(word_list) + 'n')
+
 
                 # iterate through tags to obtain links present on web page
                 for tag in a_tags:
                     list_links.append(urllib.parse.urljoin(d, tag.get('href')).split('#')[0]) #adding links to list after defragging the URL
-                    file.write(url + '\n')
+                    unique_URLs_file.write(url + '\n')
             except:
                 print("Error processing next URLs")
-    file.close()
+
+    # Close openend files           
+    unique_URLs_file.close()
+    longest_page_file.close()
+    content_file.close()
+
     return list_links #returns empty list if the URL is crawled or if the URL is not valid
 
 
