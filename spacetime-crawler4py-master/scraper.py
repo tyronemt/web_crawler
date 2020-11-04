@@ -57,6 +57,7 @@ def is_valid(url):
 
 
         if "calendar" in parsed.query or "calendar" in parsed.path:
+            print("HERE>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>")
             return False
 
         return not re.match(
