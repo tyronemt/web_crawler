@@ -1,8 +1,9 @@
 
 def unique(url_text_file):
+    print("f")
     s = set()
-    file = open("unique.txt", "a", encoding = "utf-8")
-    file2 = open(url_text_file,"a", encoding = "utf-8")
+    file = open("report.txt", "a", encoding = "utf-8")
+    file2 = open(url_text_file,"r", encoding = "utf-8")
 
     for urls in file2:
         s.add(urls.rstrip("\n"))
@@ -14,8 +15,8 @@ def unique(url_text_file):
     file2.close()
 
 def longest(url_text_file):
-    file = open("longest.txt", "a", encoding = "utf-8")
-    file2 = open(url_text_file,"a", encoding = "utf-8")
+    file = open("report.txt", "a", encoding = "utf-8")
+    file2 = open(url_text_file,"r", encoding = "utf-8")
     i = 0
     longest = ""
     temp = ""
