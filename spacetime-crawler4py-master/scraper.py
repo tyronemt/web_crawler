@@ -39,7 +39,7 @@ def extract_next_links(url, resp):
 
 
 def valid_response_status(respo):
-    if 200<=respo.status<=299:
+    if 200<=respo.status<=299 and respo.status not in (204):
         return True
     else:
         return False
