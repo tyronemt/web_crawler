@@ -114,6 +114,7 @@ def check_netloc(parsed_url):
         
     if netloc == "today.uci.edu" and "/department/information_computer_sciences" in parsed_url.path:
         print("HERE>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>")
+        print(parsed_url.netloc)
         return True
 
     return False
