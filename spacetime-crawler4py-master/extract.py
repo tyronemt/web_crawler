@@ -48,11 +48,11 @@ def sort_URLS(url_text_file):
 
 def get_50_most(words_file):
     frequencies = dict()
-    file = open("number_3.txt", "a", encoding = "utf-8")
+    output_file = open("number_3.txt", "a", encoding = "utf-8")
     stop_words = open("stopwords.txt", "a", encoding = "utf-8")
     stop_list = []
     for line in stop_words: 
-        line = line.rstrip() #or some other preprocessing
+        line = line.rstrip() 
         stop_list += line.split()
     with open(words_file, 'a', encoding='utf8') as words_file:
         for word in words_file: #add a condition where the it will not add the word into the dictionary if it is a stop word. 
@@ -64,11 +64,12 @@ def get_50_most(words_file):
     counter = 0
     for (word,frequency) in sorted(frequencies, key = lambda x: -x[1]): #loops through the sorted dictionary where the largest frequencies are in the front
         if counter < 50: #counter to make sure it doesnt go over 50
-            file.write(word + "-->" + frequency + "/n")
+            output_file.write(word + "-->" + frequency + "/n")
             counter += 1
         else:
             break
-    file.close()
+    output_file.close()
+    stop_words.close()
         
 
 
