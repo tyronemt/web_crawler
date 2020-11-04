@@ -1,6 +1,6 @@
 
 def unique(url_text_file):
-    s = ()
+    s = set()
     file = open("answer.txt", "a", encoding = "utf-8")
     file2 = open(url_text_file,"a", encoding = "utf-8")
 
@@ -29,6 +29,7 @@ def longest(url_text_file):
         if i == 1:
             if int(urls.strip("\n")) > length:
                 longest = temp
+                length = int(urls.strip("\n"))
         i += 1
 
     file.write("Longest Page URL: " + str(longest) + "\n")
@@ -39,5 +40,5 @@ def longest(url_text_file):
 
 
 if __name__ == "__main__":
-    unique("unique_URLs.txt")
+    unique("URLs.txt")
     longest("longest_page.txt")
