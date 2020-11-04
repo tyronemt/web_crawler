@@ -22,7 +22,7 @@ def scraper(url, resp):
 
 
 def extract_next_links(url, resp):
-    list_links = list()
+    list_links = []
     if is_valid(url):
         parsed_url = urlparse(url)
         d = "https://" + parsed_url.netloc
