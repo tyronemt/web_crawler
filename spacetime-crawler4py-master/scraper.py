@@ -27,6 +27,7 @@ def scraper(url, resp):
 
 def extract_next_links(url, resp):
     list_links = []
+    file = open("unique_URLs.txt", 'a')
     if is_valid(url):
         parsed_url = urlparse(url)
         d = "https://" + parsed_url.netloc
@@ -36,8 +37,10 @@ def extract_next_links(url, resp):
                 a_tags = soup.find_all('a')
                 for tag in a_tags:
                     list_links.append(urllib.parse.urljoin(d, tag.get('href')).split('#')[0]) #adding links to list after defragging the URL
+                    file.write(url + '\n')
             except:
                 print("Error processing next URLs")
+    file.close()
     return list_links #returns empty list if the URL is crawled or if the URL is not valid
 
 
