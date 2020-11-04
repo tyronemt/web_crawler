@@ -55,7 +55,7 @@ def extract_next_links(url, resp):
                 # DO NOT INCLUDE web pages with less than 10 tokens ("too low content")
                 if (len(word_list) > 10):
                     longest_page_file.write(url + '\n' + str(len(word_list)) +'\n')
-                    content_file.write(str(word_list) + 'n')
+                    content_file.write(str(word_list) + '\n\n')
 
                     URLs_file.write(url + '\n')
                     # iterate through tags to obtain links present on web page
@@ -151,8 +151,6 @@ def check_netloc(parsed_url):
 
     if netloc == "today.uci.edu" and "/department/information_computer_sciences" in parsed_url.path:
         return True
-
-   
 
     if netloc == "hack.ics.uci.edu" and "gallery" in parsed_url.path:
         return False
