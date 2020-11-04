@@ -145,9 +145,9 @@ def check_netloc(parsed_url):
 
     if netloc == "today.uci.edu" and "/department/information_computer_sciences" in parsed_url.path:
         return True
-    elif netloc == "wics.ics.uci.edu" and "/events" in url.path:
+    if netloc == "wics.ics.uci.edu" and "/events" in url.path:
         return False
-    elif netloc == "hack.ics.uci.edu" and "/gallery" in url.path:
+    if netloc == "hack.ics.uci.edu" and "/gallery" in url.path:
         return False
     
     for i in skip:
