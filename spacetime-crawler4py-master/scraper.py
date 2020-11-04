@@ -31,7 +31,6 @@ def extract_next_links(url, resp):
     URLs_file = open("URLs.txt", 'a', encoding='utf-8')
     longest_page_file = open("longest_page.txt", 'a', encoding='utf-8')
     content_file = open("content.txt", 'a', encoding='utf-8')
-    ics_file = open("ICS.txt", 'a', encoding = 'utf-8')
 
     if is_valid(url):
         parsed_url = urlparse(url)

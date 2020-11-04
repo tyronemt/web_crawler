@@ -1,7 +1,7 @@
 
 def unique(url_text_file):
-    s = ()
-    file = open("answer.txt", "a", encoding = "utf-8")
+    s = set()
+    file = open("unique.txt", "a", encoding = "utf-8")
     file2 = open(url_text_file,"a", encoding = "utf-8")
 
     for urls in file2:
@@ -14,8 +14,7 @@ def unique(url_text_file):
     file2.close()
 
 def longest(url_text_file):
-    lst =[]
-    file = open("answer.txt", "a", encoding = "utf-8")
+    file = open("longest.txt", "a", encoding = "utf-8")
     file2 = open(url_text_file,"a", encoding = "utf-8")
     i = 0
     longest = ""
@@ -35,6 +34,15 @@ def longest(url_text_file):
     file.write("Length of Longest Page: " + str(length) + "\n")
     file.close()
 
+def sort_URLS(url_text_file):
+    counter = 0
+    file = open("ics.txt", "a", encoding = "utf-8")
+    with open(url_text_file, 'a', encoding='utf8') as url_file: #sorts URLs then extracts the ICS subdomains and writes them into answer.txt
+        for url in sorted(url_file):
+            if 'ics.uci.edu' in url:
+                counter += 1
+                file.write(url + " URL #: " + str(counter) +  "\n")
+    file.close()
 
 
 
