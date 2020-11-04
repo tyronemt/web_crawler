@@ -57,12 +57,11 @@ def extract_next_links(url, resp):
                     longest_page_file.write(url + '\n' + str(len(word_list)) +'\n')
                     content_file.write(str(word_list) + 'n')
 
-
+                    URLs_file.write(url + '\n')
                     # iterate through tags to obtain links present on web page
                     for tag in a_tags:
                         list_links.append(urllib.parse.urljoin(d, tag.get('href')).split('#')[0]) #adding links to list after defragging the URL
-                        URLs_file.write(url + '\n')
-                        
+
             except:
                 print("Error processing next URLs")
 
