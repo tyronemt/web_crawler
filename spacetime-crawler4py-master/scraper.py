@@ -40,10 +40,10 @@ def extract_next_links(url, resp):
 
                 # CITE: https://matix.io/extract-text-from-webpage-using-beautifulsoup-and-python/
                 # extracting all text from webpage
-                text = soup.find_all(text=True)
+                text_list = soup.text # returns string of all readable text 
+                text_list = text_list.split('\n')
+                text_list = text_list.split()
 
-                # 
-                
                 # iterate through tags to obtain links present on web page
                 for tag in a_tags:
                     list_links.append(urllib.parse.urljoin(d, tag.get('href')).split('#')[0]) #adding links to list after defragging the URL
