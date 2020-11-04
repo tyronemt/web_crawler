@@ -28,6 +28,7 @@ def longest(url_text_file):
         if i == 1:
             if int(urls.strip("\n")) > length:
                 longest = temp
+                length = int(urls.strip("\n"))
         i += 1
 
     file.write("Longest Page URL: " + str(longest) + "\n")
@@ -47,5 +48,5 @@ def sort_URLS(url_text_file):
 
 
 if __name__ == "__main__":
-    unique("unique_URLs.txt")
+    unique("URLs.txt")
     longest("longest_page.txt")
