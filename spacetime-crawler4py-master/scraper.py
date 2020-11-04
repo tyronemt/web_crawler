@@ -33,8 +33,18 @@ def extract_next_links(url, resp):
         d = "https://" + parsed_url.netloc
         if if_not_crawled(url, resp):
             try:
-                soup = BeautifulSoup(resp.raw_response.content, "html.parser") #https://python.gotrained.com/beautifulsoup-extracting-urls/ implemented the algorithm to extract links using beautiful soup from this source
+                 # CITE: https://python.gotrained.com/beautifulsoup-extracting-urls/ 
+                 # implemented the algorithm to extract links using beautiful soup from this source
+                soup = BeautifulSoup(resp.raw_response.content, "html.parser")
                 a_tags = soup.find_all('a')
+
+                # CITE: https://matix.io/extract-text-from-webpage-using-beautifulsoup-and-python/
+                # extracting all text from webpage
+                text = soup.find_all(text=True)
+
+                # 
+                
+                # iterate through tags to obtain links present on web page
                 for tag in a_tags:
                     list_links.append(urllib.parse.urljoin(d, tag.get('href')).split('#')[0]) #adding links to list after defragging the URL
                     file.write(url + '\n')
