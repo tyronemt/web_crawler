@@ -1,7 +1,7 @@
 import re
 from bs4 import BeautifulSoup
 import urllib
-from urllib.parse import urlparse, urldefrag
+from urllib.parse import urlparse
 
 
 # SETTING GLOBAL VARIABLES
@@ -57,10 +57,10 @@ def extract_next_links(url, resp):
                     content_file.write(str(word_list) + 'n')
 
 
-                # iterate through tags to obtain links present on web page
-                for tag in a_tags:
-                    list_links.append(urllib.parse.urljoin(d, tag.get('href')).split('#')[0]) #adding links to list after defragging the URL
-                    URLs_file.write(url + '\n')
+                    # iterate through tags to obtain links present on web page
+                    for tag in a_tags:
+                        list_links.append(urllib.parse.urljoin(d, tag.get('href')).split('#')[0]) #adding links to list after defragging the URL
+                        URLs_file.write(url + '\n')
             except:
                 print("Error processing next URLs")
 
@@ -74,7 +74,7 @@ def extract_next_links(url, resp):
 
 
 def valid_response_status(respo):
-    if 200<=respo.status<=299 and respo.status != 204:
+    if 200<=respo.status<=299 and respo.status != 204: #status 204 means that theres no content
         return True
     else:
         return False
