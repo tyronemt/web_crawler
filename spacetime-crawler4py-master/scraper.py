@@ -7,8 +7,9 @@ from urllib.parse import urlparse
 # SETTING GLOBAL VARIABLES
 visited_urls = []
 valid_netloc = ["ics.uci.edu","cs.uci.edu","stat.uci.edu","informatics.uci.edu"]
+skip = ["archive.uci.edu", "intranet.ics.uci.edu", "grape.ics.uci.edu"]
 
-no_list =["calendar","css","js","bmp","pptx","doc","docx","xls","data","dat","gif","gz","svg","txt","py","rkt","json","pdf","jpeg","ico","png",
+no_list =["calendar","events","img","apk", "jpg","css","js","bmp","pptx","doc","docx","xls","data","dat","gif","gz","svg","txt","py","rkt","json","pdf","jpeg","ico","png",
             "mp2","mp3","mp4","wav","avi","mov","pdf","ps","eps","tex","ppt","exe",
             "tar","msi","bin","psd","dmg","epub","jar","csv","zip","rar","wp-content"]
 
@@ -53,14 +54,21 @@ def extract_next_links(url, resp):
 
                 # DO NOT INCLUDE web pages with less than 10 tokens ("too low content")
                 if (len(word_list) > 10):
-                    longest_page_file.write(url + ' ' + str(len(word_list)) +'\n')
+                    longest_page_file.write(url + '\n' + str(len(word_list)) +'\n')
                     content_file.write(str(word_list) + 'n')
 
 
+<<<<<<< HEAD
                     # iterate through tags to obtain links present on web page
                     for tag in a_tags:
                         list_links.append(urllib.parse.urljoin(d, tag.get('href')).split('#')[0]) #adding links to list after defragging the URL
                         URLs_file.write(url + '\n')
+=======
+                # iterate through tags to obtain links present on web 
+                for tag in a_tags:
+                    list_links.append(urllib.parse.urljoin(d, tag.get('href')).split('#')[0]) #adding links to list after defragging the URL
+                    URLs_file.write(url + '\n')
+>>>>>>> d677c914ff5ab9755bf6a0fa96eb9756bb997725
             except:
                 print("Error processing next URLs")
 
@@ -142,9 +150,24 @@ def check_netloc(parsed_url):
     if len(netloc.split(".")) >= 4:
         sd = ".".join(netloc.split(".")[1:])
 
+
+    if netloc == "wics.ics.uci.edu" and \
+       "/events" in parsed_url.path:
+        print("FALSE")
+        return False
+
     if netloc == "today.uci.edu" and "/department/information_computer_sciences" in parsed_url.path:
         return True
 
+   
+
+    if netloc == "hack.ics.uci.edu" and "gallery" in parsed_url.path:
+        return False
+    
+    for i in skip:
+        if netloc == i:
+            return False
+    
     for i in valid_netloc:
         if sd == i:
             return True
