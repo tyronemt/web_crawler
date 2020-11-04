@@ -46,6 +46,24 @@ def sort_URLS(url_text_file):
                 file.write(url + " URL #: " + str(counter) +  "\n")
     file.close()
 
+def get_50_most(words_file):
+    frequencies = dict()
+    file = open("number_3.txt", "a", encoding = "utf-8")
+    with open(words_file, 'a', encoding='utf8') as words_file:
+        for word in words_file: #add a condition where the it will not add the word into the dictionary if it is a stop word. 
+            if word not in frequencies:
+                frequencies[word] = 1
+            else:
+                frequencies[word] += 1 #creates the dict of frequencies in the words file
+    counter = 0
+    for (word,frequency) in sorted(frequencies, key = lambda x: -x[1]): #loops through the sorted dictionary where the largest frequencies are in the front
+        if counter < 50: #counter to make sure it doesnt go over 50
+            file.write(word + "-->" + frequency + "/n")
+            counter += 1
+        else:
+            break
+    file.close()
+        
 
 
 if __name__ == "__main__":
