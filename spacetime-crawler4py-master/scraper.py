@@ -117,7 +117,6 @@ def check_netloc(parsed_url):
         sd = ".".join(netloc.split(".")[1:])
         
     if netloc == "today.uci.edu" and "/department/information_computer_sciences" in parsed_url.path:
-        print(parsed_url.netloc)
         return True
 
     return False
