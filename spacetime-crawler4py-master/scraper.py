@@ -28,9 +28,10 @@ def scraper(url, resp):
 def extract_next_links(url, resp):
     list_links = []
     word_list = []
-    unique_URLs_file = open("unique_URLs.txt", 'a', encoding='utf-8')
+    URLs_file = open("URLs.txt", 'a', encoding='utf-8')
     longest_page_file = open("longest_page.txt", 'a', encoding='utf-8')
     content_file = open("content.txt", 'a', encoding='utf-8')
+    ics_file = open("ICS.txt", 'a', encoding = 'utf-8')
 
     if is_valid(url):
         parsed_url = urlparse(url)
@@ -58,12 +59,12 @@ def extract_next_links(url, resp):
                 # iterate through tags to obtain links present on web page
                 for tag in a_tags:
                     list_links.append(urllib.parse.urljoin(d, tag.get('href')).split('#')[0]) #adding links to list after defragging the URL
-                    unique_URLs_file.write(url + '\n')
+                    URLs_file.write(url + '\n')
             except:
                 print("Error processing next URLs")
 
     # Close openend files           
-    unique_URLs_file.close()
+    URLs_file.close()
     longest_page_file.close()
     content_file.close()
 
