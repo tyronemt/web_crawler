@@ -56,9 +56,8 @@ def is_valid(url):
             return False
 
 
-        # if "calendar" in parsed.query or "calendar" in parsed.path:
-        #     print("HERE>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>")
-        #     return False
+        if "calendar" in parsed.query or "calendar" in parsed.path:
+            return False
 
         return not re.match(
             r".*\.(css|js|bmp|gif|jpe?g|ico"
@@ -113,7 +112,6 @@ def check_netloc(parsed_url):
         sd = ".".join(netloc.split(".")[1:])
         
     if netloc == "today.uci.edu" and "/department/information_computer_sciences" in parsed_url.path:
-        print("HERE>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>")
         print(parsed_url.netloc)
         return True
 
