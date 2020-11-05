@@ -1,0 +1,570 @@
+# of unique urls: 4366
+
+Longest Page URL: https://www.stat.uci.edu
+Length of Longest Page: 10000000000000000000
+
+ 'the'-->73510
+ 'and'-->62245
+ 'of'-->61134
+ 'to'-->45064
+ 'a'-->36331
+ 'in'-->32538
+ 'for'-->20969
+ 'on'-->17135
+ 's'-->15889
+ 'S'-->15329
+ 'Research'-->14199
+ 'is'-->13864
+ 'that'-->12967
+ 'Computer'-->12839
+ 'at'-->12260
+ 'B'-->12093
+ 'D'-->12023
+ 'with'-->11645
+ 'Student'-->11132
+ '2018'-->11012
+ '2019'-->10176
+ 'I'-->9925
+ 'Bren'-->9824
+ 'UCI'-->9731
+ '0'-->9477
+ 'ICS'-->9474
+ 'The'-->9316
+ 'by'-->9240
+ 'Software'-->9127
+ '2017'-->9073
+ 'Information'-->8712
+ 'A'-->8576
+ 'Policies:'-->8468
+ '2016'-->8439
+ 'Informatics'-->8346
+ 'School'-->8281
+ 'M'-->8259
+ 'Graduate'-->8114
+ 'News'-->8088
+ '1'-->8060
+ 'from'-->8039
+ '2015'-->7972
+ 'as'-->7943
+ '2'-->7775
+ 'you'-->7578
+ 'or'-->7420
+ 'Contact'-->7178
+ 'are'-->7178
+ 'Engineering'-->7165
+ 'We'-->7101
+
+asterix-gerrit.ics.uci.edu URL #: 1
+asterix.ics.uci.edu URL #: 5
+cbcl.ics.uci.edu URL #: 1
+cert.ics.uci.edu URL #: 16
+checkmate.ics.uci.edu URL #: 2
+cloudberry.ics.uci.edu URL #: 39
+cml.ics.uci.edu URL #: 42
+computableplant.ics.uci.edu URL #: 46
+cradl.ics.uci.edu URL #: 20
+cwicsocal18.ics.uci.edu URL #: 12
+cyberclub.ics.uci.edu URL #: 11
+dejavu.ics.uci.edu URL #: 1
+duttgroup.ics.uci.edu URL #: 70
+dynamo.ics.uci.edu URL #: 3
+emj.ics.uci.edu URL #: 43
+flamingo.ics.uci.edu URL #: 16
+fr.ics.uci.edu URL #: 3
+frost.ics.uci.edu URL #: 1
+futurehealth.ics.uci.edu URL #: 12
+graphics.ics.uci.edu URL #: 7
+hack.ics.uci.edu URL #: 34
+hai.ics.uci.edu URL #: 6
+hana.ics.uci.edu URL #: 66
+helpdesk.ics.uci.edu URL #: 2
+hombao.ics.uci.edu URL #: 1
+iasl.ics.uci.edu URL #: 15
+ics.uci.edu URL #: 1764
+informatics.ics.uci.edu URL #: 1
+ipf.ics.uci.edu URL #: 2
+ipubmed.ics.uci.edu URL #: 1
+jgarcia.ics.uci.edu URL #: 18
+malek.ics.uci.edu URL #: 3
+mcs.ics.uci.edu URL #: 38
+mdogucu.ics.uci.edu URL #: 8
+mhcid.ics.uci.edu URL #: 12
+mondego.ics.uci.edu URL #: 3
+mse.ics.uci.edu URL #: 3
+mswe.ics.uci.edu URL #: 20
+nalini.ics.uci.edu URL #: 6
+plrg.ics.uci.edu URL #: 9
+psearch.ics.uci.edu URL #: 1
+redmiles.ics.uci.edu URL #: 7
+sconce.ics.uci.edu URL #: 2
+sdcl.ics.uci.edu URL #: 203
+seal.ics.uci.edu URL #: 29
+sherlock.ics.uci.edu URL #: 6
+sli.ics.uci.edu URL #: 1
+sourcerer.ics.uci.edu URL #: 1
+sprout.ics.uci.edu URL #: 1
+student-council.ics.uci.edu URL #: 14
+support.ics.uci.edu URL #: 3
+transformativeplay.ics.uci.edu URL #: 35
+Transformativeplay.ics.uci.edu URL #: 1
+ugradforms.ics.uci.edu URL #: 2
+vision.ics.uci.edu URL #: 6
+wics.ics.uci.edu URL #: 922
+xtune.ics.uci.edu URL #: 6
+
+# of unique urls: 4366
+
+Longest Page URL: https://www.stat.uci.edu
+Length of Longest Page: 10000000000000000000
+
+ 'the'-->73510
+ 'and'-->62245
+ 'of'-->61134
+ 'to'-->45064
+ 'a'-->36331
+ 'in'-->32538
+ 'for'-->20969
+ 'on'-->17135
+ 's'-->15889
+ 'S'-->15329
+ 'Research'-->14199
+ 'is'-->13864
+ 'that'-->12967
+ 'Computer'-->12839
+ 'at'-->12260
+ 'B'-->12093
+ 'D'-->12023
+ 'with'-->11645
+ 'Student'-->11132
+ '2018'-->11012
+ '2019'-->10176
+ 'I'-->9925
+ 'Bren'-->9824
+ 'UCI'-->9731
+ '0'-->9477
+ 'ICS'-->9474
+ 'The'-->9316
+ 'by'-->9240
+ 'Software'-->9127
+ '2017'-->9073
+ 'Information'-->8712
+ 'A'-->8576
+ 'Policies:'-->8468
+ '2016'-->8439
+ 'Informatics'-->8346
+ 'School'-->8281
+ 'M'-->8259
+ 'Graduate'-->8114
+ 'News'-->8088
+ '1'-->8060
+ 'from'-->8039
+ '2015'-->7972
+ 'as'-->7943
+ '2'-->7775
+ 'you'-->7578
+ 'or'-->7420
+ 'Contact'-->7178
+ 'are'-->7178
+ 'Engineering'-->7165
+ 'We'-->7101
+
+asterix-gerrit.ics.uci.edu URL #: 1
+asterix.ics.uci.edu URL #: 5
+cbcl.ics.uci.edu URL #: 1
+cert.ics.uci.edu URL #: 16
+checkmate.ics.uci.edu URL #: 2
+cloudberry.ics.uci.edu URL #: 39
+cml.ics.uci.edu URL #: 42
+computableplant.ics.uci.edu URL #: 46
+cradl.ics.uci.edu URL #: 20
+cwicsocal18.ics.uci.edu URL #: 12
+cyberclub.ics.uci.edu URL #: 11
+dejavu.ics.uci.edu URL #: 1
+duttgroup.ics.uci.edu URL #: 70
+dynamo.ics.uci.edu URL #: 3
+emj.ics.uci.edu URL #: 43
+flamingo.ics.uci.edu URL #: 16
+fr.ics.uci.edu URL #: 3
+frost.ics.uci.edu URL #: 1
+futurehealth.ics.uci.edu URL #: 12
+graphics.ics.uci.edu URL #: 7
+hack.ics.uci.edu URL #: 34
+hai.ics.uci.edu URL #: 6
+hana.ics.uci.edu URL #: 66
+helpdesk.ics.uci.edu URL #: 2
+hombao.ics.uci.edu URL #: 1
+iasl.ics.uci.edu URL #: 15
+ics.uci.edu URL #: 1764
+informatics.ics.uci.edu URL #: 1
+ipf.ics.uci.edu URL #: 2
+ipubmed.ics.uci.edu URL #: 1
+jgarcia.ics.uci.edu URL #: 18
+malek.ics.uci.edu URL #: 3
+mcs.ics.uci.edu URL #: 38
+mdogucu.ics.uci.edu URL #: 8
+mhcid.ics.uci.edu URL #: 12
+mondego.ics.uci.edu URL #: 3
+mse.ics.uci.edu URL #: 3
+mswe.ics.uci.edu URL #: 20
+nalini.ics.uci.edu URL #: 6
+plrg.ics.uci.edu URL #: 9
+psearch.ics.uci.edu URL #: 1
+redmiles.ics.uci.edu URL #: 7
+sconce.ics.uci.edu URL #: 2
+sdcl.ics.uci.edu URL #: 203
+seal.ics.uci.edu URL #: 29
+sherlock.ics.uci.edu URL #: 6
+sli.ics.uci.edu URL #: 1
+sourcerer.ics.uci.edu URL #: 1
+sprout.ics.uci.edu URL #: 1
+student-council.ics.uci.edu URL #: 14
+support.ics.uci.edu URL #: 3
+transformativeplay.ics.uci.edu URL #: 35
+Transformativeplay.ics.uci.edu URL #: 1
+ugradforms.ics.uci.edu URL #: 2
+vision.ics.uci.edu URL #: 6
+wics.ics.uci.edu URL #: 922
+xtune.ics.uci.edu URL #: 6
+
+# of unique urls: 4366
+
+Longest Page URL: https://www.stat.uci.edu
+Length of Longest Page: 10000000000000000000
+
+ 'the'-->73510
+ 'and'-->62245
+ 'of'-->61134
+ 'to'-->45064
+ 'a'-->36331
+ 'in'-->32538
+ 'for'-->20969
+ 'on'-->17135
+ 's'-->15889
+ 'S'-->15329
+ 'Research'-->14199
+ 'is'-->13864
+ 'that'-->12967
+ 'Computer'-->12839
+ 'at'-->12260
+ 'B'-->12093
+ 'D'-->12023
+ 'with'-->11645
+ 'Student'-->11132
+ '2018'-->11012
+ '2019'-->10176
+ 'I'-->9925
+ 'Bren'-->9824
+ 'UCI'-->9731
+ '0'-->9477
+ 'ICS'-->9474
+ 'The'-->9316
+ 'by'-->9240
+ 'Software'-->9127
+ '2017'-->9073
+ 'Information'-->8712
+ 'A'-->8576
+ 'Policies:'-->8468
+ '2016'-->8439
+ 'Informatics'-->8346
+ 'School'-->8281
+ 'M'-->8259
+ 'Graduate'-->8114
+ 'News'-->8088
+ '1'-->8060
+ 'from'-->8039
+ '2015'-->7972
+ 'as'-->7943
+ '2'-->7775
+ 'you'-->7578
+ 'or'-->7420
+ 'Contact'-->7178
+ 'are'-->7178
+ 'Engineering'-->7165
+ 'We'-->7101
+
+asterix-gerrit.ics.uci.edu URL #: 1
+asterix.ics.uci.edu URL #: 5
+cbcl.ics.uci.edu URL #: 1
+cert.ics.uci.edu URL #: 16
+checkmate.ics.uci.edu URL #: 2
+cloudberry.ics.uci.edu URL #: 39
+cml.ics.uci.edu URL #: 42
+computableplant.ics.uci.edu URL #: 46
+cradl.ics.uci.edu URL #: 20
+cwicsocal18.ics.uci.edu URL #: 12
+cyberclub.ics.uci.edu URL #: 11
+dejavu.ics.uci.edu URL #: 1
+duttgroup.ics.uci.edu URL #: 70
+dynamo.ics.uci.edu URL #: 3
+emj.ics.uci.edu URL #: 43
+flamingo.ics.uci.edu URL #: 16
+fr.ics.uci.edu URL #: 3
+frost.ics.uci.edu URL #: 1
+futurehealth.ics.uci.edu URL #: 12
+graphics.ics.uci.edu URL #: 7
+hack.ics.uci.edu URL #: 34
+hai.ics.uci.edu URL #: 6
+hana.ics.uci.edu URL #: 66
+helpdesk.ics.uci.edu URL #: 2
+hombao.ics.uci.edu URL #: 1
+iasl.ics.uci.edu URL #: 15
+ics.uci.edu URL #: 1764
+informatics.ics.uci.edu URL #: 1
+ipf.ics.uci.edu URL #: 2
+ipubmed.ics.uci.edu URL #: 1
+jgarcia.ics.uci.edu URL #: 18
+malek.ics.uci.edu URL #: 3
+mcs.ics.uci.edu URL #: 38
+mdogucu.ics.uci.edu URL #: 8
+mhcid.ics.uci.edu URL #: 12
+mondego.ics.uci.edu URL #: 3
+mse.ics.uci.edu URL #: 3
+mswe.ics.uci.edu URL #: 20
+nalini.ics.uci.edu URL #: 6
+plrg.ics.uci.edu URL #: 9
+psearch.ics.uci.edu URL #: 1
+redmiles.ics.uci.edu URL #: 7
+sconce.ics.uci.edu URL #: 2
+sdcl.ics.uci.edu URL #: 203
+seal.ics.uci.edu URL #: 29
+sherlock.ics.uci.edu URL #: 6
+sli.ics.uci.edu URL #: 1
+sourcerer.ics.uci.edu URL #: 1
+sprout.ics.uci.edu URL #: 1
+student-council.ics.uci.edu URL #: 14
+support.ics.uci.edu URL #: 3
+transformativeplay.ics.uci.edu URL #: 35
+Transformativeplay.ics.uci.edu URL #: 1
+ugradforms.ics.uci.edu URL #: 2
+vision.ics.uci.edu URL #: 6
+wics.ics.uci.edu URL #: 922
+xtune.ics.uci.edu URL #: 6
+
+# of unique urls: 4366
+
+Longest Page URL: https://www.stat.uci.edu
+Length of Longest Page: 10000000000000000000
+
+ the-->82902
+ and-->62706
+ of-->61393
+ to-->45971
+ a-->44907
+ in-->36354
+ s-->31218
+ for-->22209
+ research-->18910
+ on-->18210
+ computer-->16652
+ d-->16025
+ b-->15638
+ i-->14261
+ is-->14161
+ that-->13257
+ student-->13198
+ at-->12734
+ uci-->12431
+ m-->12284
+ with-->12231
+ software-->11846
+ t-->11575
+ 2018-->11012
+ we-->10973
+ information-->10944
+ students-->10940
+ ics-->10559
+ school-->10362
+ news-->10334
+ 2019-->10176
+ bren-->9991
+ p-->9937
+ j-->9744
+ by-->9707
+ e-->9612
+ 0-->9477
+ u-->9284
+ c-->9194
+ 2017-->9073
+ informatics-->8956
+ graduate-->8902
+ you-->8858
+ as-->8812
+ be-->8620
+ events-->8580
+ r-->8563
+ policies:-->8469
+ 2016-->8439
+ from-->8377
+
+asterix-gerrit.ics.uci.edu URL #: 1
+asterix.ics.uci.edu URL #: 5
+cbcl.ics.uci.edu URL #: 1
+cert.ics.uci.edu URL #: 16
+checkmate.ics.uci.edu URL #: 2
+cloudberry.ics.uci.edu URL #: 39
+cml.ics.uci.edu URL #: 42
+computableplant.ics.uci.edu URL #: 46
+cradl.ics.uci.edu URL #: 20
+cwicsocal18.ics.uci.edu URL #: 12
+cyberclub.ics.uci.edu URL #: 11
+dejavu.ics.uci.edu URL #: 1
+duttgroup.ics.uci.edu URL #: 70
+dynamo.ics.uci.edu URL #: 3
+emj.ics.uci.edu URL #: 43
+flamingo.ics.uci.edu URL #: 16
+fr.ics.uci.edu URL #: 3
+frost.ics.uci.edu URL #: 1
+futurehealth.ics.uci.edu URL #: 12
+graphics.ics.uci.edu URL #: 7
+hack.ics.uci.edu URL #: 34
+hai.ics.uci.edu URL #: 6
+hana.ics.uci.edu URL #: 66
+helpdesk.ics.uci.edu URL #: 2
+hombao.ics.uci.edu URL #: 1
+iasl.ics.uci.edu URL #: 15
+ics.uci.edu URL #: 1764
+informatics.ics.uci.edu URL #: 1
+ipf.ics.uci.edu URL #: 2
+ipubmed.ics.uci.edu URL #: 1
+jgarcia.ics.uci.edu URL #: 18
+malek.ics.uci.edu URL #: 3
+mcs.ics.uci.edu URL #: 38
+mdogucu.ics.uci.edu URL #: 8
+mhcid.ics.uci.edu URL #: 12
+mondego.ics.uci.edu URL #: 3
+mse.ics.uci.edu URL #: 3
+mswe.ics.uci.edu URL #: 20
+nalini.ics.uci.edu URL #: 6
+plrg.ics.uci.edu URL #: 9
+psearch.ics.uci.edu URL #: 1
+redmiles.ics.uci.edu URL #: 7
+sconce.ics.uci.edu URL #: 2
+sdcl.ics.uci.edu URL #: 203
+seal.ics.uci.edu URL #: 29
+sherlock.ics.uci.edu URL #: 6
+sli.ics.uci.edu URL #: 1
+sourcerer.ics.uci.edu URL #: 1
+sprout.ics.uci.edu URL #: 1
+student-council.ics.uci.edu URL #: 14
+support.ics.uci.edu URL #: 3
+transformativeplay.ics.uci.edu URL #: 35
+Transformativeplay.ics.uci.edu URL #: 1
+ugradforms.ics.uci.edu URL #: 2
+vision.ics.uci.edu URL #: 6
+wics.ics.uci.edu URL #: 922
+xtune.ics.uci.edu URL #: 6
+
+# of unique urls: 4366
+
+Longest Page URL: https://www.stat.uci.edu
+Length of Longest Page: 10000000000000000000
+
+ the-->82902
+ and-->62706
+ of-->61393
+ to-->45971
+ a-->44907
+ in-->36354
+ s-->31218
+ for-->22209
+ research-->18910
+ on-->18210
+ computer-->16652
+ d-->16025
+ b-->15638
+ i-->14261
+ is-->14161
+ that-->13257
+ student-->13198
+ at-->12734
+ uci-->12431
+ m-->12284
+ with-->12231
+ software-->11846
+ t-->11575
+ 2018-->11012
+ we-->10973
+ information-->10944
+ students-->10940
+ ics-->10559
+ school-->10362
+ news-->10334
+ 2019-->10176
+ bren-->9991
+ p-->9937
+ j-->9744
+ by-->9707
+ e-->9612
+ 0-->9477
+ u-->9284
+ c-->9194
+ 2017-->9073
+ informatics-->8956
+ graduate-->8902
+ you-->8858
+ as-->8812
+ be-->8620
+ events-->8580
+ r-->8563
+ policies:-->8469
+ 2016-->8439
+ from-->8377
+
+asterix-gerrit.ics.uci.edu URL #: 1
+asterix.ics.uci.edu URL #: 5
+cbcl.ics.uci.edu URL #: 1
+cert.ics.uci.edu URL #: 16
+checkmate.ics.uci.edu URL #: 2
+cloudberry.ics.uci.edu URL #: 39
+cml.ics.uci.edu URL #: 42
+computableplant.ics.uci.edu URL #: 46
+cradl.ics.uci.edu URL #: 20
+cwicsocal18.ics.uci.edu URL #: 12
+cyberclub.ics.uci.edu URL #: 11
+dejavu.ics.uci.edu URL #: 1
+duttgroup.ics.uci.edu URL #: 70
+dynamo.ics.uci.edu URL #: 3
+emj.ics.uci.edu URL #: 43
+flamingo.ics.uci.edu URL #: 16
+fr.ics.uci.edu URL #: 3
+frost.ics.uci.edu URL #: 1
+futurehealth.ics.uci.edu URL #: 12
+graphics.ics.uci.edu URL #: 7
+hack.ics.uci.edu URL #: 34
+hai.ics.uci.edu URL #: 6
+hana.ics.uci.edu URL #: 66
+helpdesk.ics.uci.edu URL #: 2
+hombao.ics.uci.edu URL #: 1
+iasl.ics.uci.edu URL #: 15
+ics.uci.edu URL #: 1764
+informatics.ics.uci.edu URL #: 1
+ipf.ics.uci.edu URL #: 2
+ipubmed.ics.uci.edu URL #: 1
+jgarcia.ics.uci.edu URL #: 18
+malek.ics.uci.edu URL #: 3
+mcs.ics.uci.edu URL #: 38
+mdogucu.ics.uci.edu URL #: 8
+mhcid.ics.uci.edu URL #: 12
+mondego.ics.uci.edu URL #: 3
+mse.ics.uci.edu URL #: 3
+mswe.ics.uci.edu URL #: 20
+nalini.ics.uci.edu URL #: 6
+plrg.ics.uci.edu URL #: 9
+psearch.ics.uci.edu URL #: 1
+redmiles.ics.uci.edu URL #: 7
+sconce.ics.uci.edu URL #: 2
+sdcl.ics.uci.edu URL #: 203
+seal.ics.uci.edu URL #: 29
+sherlock.ics.uci.edu URL #: 6
+sli.ics.uci.edu URL #: 1
+sourcerer.ics.uci.edu URL #: 1
+sprout.ics.uci.edu URL #: 1
+student-council.ics.uci.edu URL #: 14
+support.ics.uci.edu URL #: 3
+transformativeplay.ics.uci.edu URL #: 35
+Transformativeplay.ics.uci.edu URL #: 1
+ugradforms.ics.uci.edu URL #: 2
+vision.ics.uci.edu URL #: 6
+wics.ics.uci.edu URL #: 922
+xtune.ics.uci.edu URL #: 6
+

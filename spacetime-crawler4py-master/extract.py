@@ -1,6 +1,7 @@
+from collections import defaultdict
+from urllib.parse import urlparse
 
 def unique(url_text_file):
-    print("f")
     s = set()
     file = open("report.txt", "a", encoding = "utf-8")
     file2 = open(url_text_file,"r", encoding = "utf-8")
@@ -10,7 +11,7 @@ def unique(url_text_file):
 
     l = len(s)
 
-    file.write("# of unique urls: " + str(l) + "\n")
+    file.write("# of unique urls: " + str(l) + "\n\n")
     file.close()
     file2.close()
 
@@ -33,41 +34,62 @@ def longest(url_text_file):
         i += 1
 
     file.write("Longest Page URL: " + str(longest) + "\n")
-    file.write("Length of Longest Page: " + str(length) + "\n")
+    file.write("Length of Longest Page: " + str(length) + "\n\n")
     file.close()
 
 def sort_URLS(url_text_file):
-    counter = 0
-    file = open("ics.txt", "a", encoding = "utf-8")
-    with open(url_text_file, 'a', encoding='utf8') as url_file: #sorts URLs then extracts the ICS subdomains and writes them into answer.txt
-        for url in sorted(url_file):
-            if 'ics.uci.edu' in url:
-                counter += 1
-                file.write(url + " URL #: " + str(counter) +  "\n")
+    lst = []
+    d = defaultdict(int)
+    file = open("report.txt", "a", encoding = "utf-8")
+    with open(url_text_file, 'r', encoding='utf8') as url_file: #sorts URLs then extracts the ICS subdomains and writes them into answer.txt
+        for i in url_file:
+            lst.append(i.rstrip("\n"))
+        
+        for url in lst:
+            parsed = urlparse(url)
+            netloc = parsed.netloc 
+            if ("www") in netloc:
+                netloc = netloc.strip("www.")
+            sd = ".".join(netloc.split("."))
+
+            if len(netloc.split(".")) >= 4:
+                sd = ".".join(netloc.split(".")[1:])
+            if 'ics.uci.edu' == sd:
+                d[netloc] += 1
+
+        for k,v in sorted(d.items(), key = lambda x: x[0].lower()):
+            file.write(k + " URL #: " + str(v) + "\n")
+                  
+    file.write("\n")
     file.close()
 
 def get_50_most(words_file):
-    frequencies = dict()
-    output_file = open("number_3.txt", "a", encoding = "utf-8")
-    stop_words = open("stopwords.txt", "a", encoding = "utf-8")
+    frequencies = defaultdict(int)
+    output_file = open("report.txt", "a", encoding = "utf-8")
+    stop_words = open("stop_words.txt", "r", encoding = "utf-8")
     stop_list = []
     for line in stop_words: 
-        line = line.rstrip() 
-        stop_list += line.split()
-    with open(words_file, 'a', encoding='utf8') as words_file:
-        for word in words_file: #add a condition where the it will not add the word into the dictionary if it is a stop word. 
-            if word not in stop_list:
-                if word not in frequencies:
-                    frequencies[word] = 1
-                else:
-                    frequencies[word] += 1 #creates the dict of frequencies in the words file
+        line = line.rstrip("\n")
+        stop_list.append(str(line))
+
+    with open(words_file, 'r', encoding='utf8') as words_file:
+        for line in words_file: #add a condition where the it will not add the word into the dictionary if it is a stop word.
+            line = line.rstrip("\n")
+            temp = line.replace("[", "")
+            temp2 = temp.replace("]","")
+            temp3 = temp2.replace("'","")
+            line_split = temp3.split(",")
+            for word in line_split:
+                if word.lower() not in stop_list and len(word) > 1:
+                    frequencies[word.lower()] += 1 #creates the dict of frequencies in the words file
     counter = 0
-    for (word,frequency) in sorted(frequencies, key = lambda x: -x[1]): #loops through the sorted dictionary where the largest frequencies are in the front
+    for (word,frequency) in sorted(frequencies.items(), key = lambda x: -x[1]): #loops through the sorted dictionary where the largest frequencies are in the front
         if counter < 50: #counter to make sure it doesnt go over 50
-            output_file.write(word + "-->" + frequency + "/n")
+            output_file.write(word + "-->" + str(frequency) + "\n")
             counter += 1
         else:
             break
+    output_file.write("\n")
     output_file.close()
     stop_words.close()
         
@@ -76,3 +98,5 @@ def get_50_most(words_file):
 if __name__ == "__main__":
     unique("URLs.txt")
     longest("longest_page.txt")
+    get_50_most("content.txt")
+    sort_URLS("URLs.txt")
