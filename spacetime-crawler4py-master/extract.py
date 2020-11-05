@@ -47,9 +47,12 @@ def sort_URLS(url_text_file):
         
         lst = sorted(lst)
         for url in lst:
-            if 'ics.uci.edu' in url:
-                counter += 1
-                file.write(url + " URL #: " + str(counter) + "\n")
+            if counter < 50:
+                if 'ics.uci.edu' in url:
+                    counter += 1
+                    file.write(url + " URL #: " + str(counter) + "\n")
+            else:
+                break
                 
     file.write("\n")
     file.close()
