@@ -5,6 +5,7 @@ def unique(url_text_file):
     s = set()
     file = open("report.txt", "a", encoding = "utf-8")
     file2 = open(url_text_file,"r", encoding = "utf-8")
+    file.write("Answering Question # 1:" + "\n")
 
     for urls in file2:
         s.add(urls.rstrip("\n"))
@@ -18,6 +19,7 @@ def unique(url_text_file):
 def longest(url_text_file):
     file = open("report.txt", "a", encoding = "utf-8")
     file2 = open(url_text_file,"r", encoding = "utf-8")
+    file.write("Answering Question # 2:" + "\n")
     i = 0
     longest = ""
     temp = ""
@@ -41,6 +43,7 @@ def sort_URLS(url_text_file):
     lst = []
     d = defaultdict(int)
     file = open("report.txt", "a", encoding = "utf-8")
+    file.write("Answering Question # 4:" + "\n\n")
     with open(url_text_file, 'r', encoding='utf8') as url_file: #sorts URLs then extracts the ICS subdomains and writes them into answer.txt
         for i in url_file:
             lst.append(i.rstrip("\n"))
@@ -57,6 +60,7 @@ def sort_URLS(url_text_file):
             if 'ics.uci.edu' == sd:
                 d[netloc] += 1
 
+        file.write("# of subdomains found for 'ics.uci.edu': " + str(len(d.keys())) + "\n\n")
         for k,v in sorted(d.items(), key = lambda x: x[0].lower()):
             file.write(k + " URL #: " + str(v) + "\n")
                   
@@ -67,6 +71,8 @@ def get_50_most(words_file):
     frequencies = defaultdict(int)
     output_file = open("report.txt", "a", encoding = "utf-8")
     stop_words = open("stop_words.txt", "r", encoding = "utf-8")
+    output_file.write("Answering Question # 3:" + "\n\n")
+    output_file.write("50 most common words in the entire set of pages crawled :" + "\n\n")
     stop_list = []
     for line in stop_words: 
         line = line.rstrip("\n")
@@ -80,8 +86,8 @@ def get_50_most(words_file):
             temp3 = temp2.replace("'","")
             line_split = temp3.split(",")
             for word in line_split:
-                if word.lower() not in stop_list and len(word) > 1:
-                    frequencies[word.lower()] += 1 #creates the dict of frequencies in the words file
+                if (word.lower()[1:] not in stop_list) and len(word[1:]) > 1 and word[1:].isalpha():
+                    frequencies[word.lower()[1:]] += 1 #creates the dict of frequencies in the words file
     counter = 0
     for (word,frequency) in sorted(frequencies.items(), key = lambda x: -x[1]): #loops through the sorted dictionary where the largest frequencies are in the front
         if counter < 50: #counter to make sure it doesnt go over 50
