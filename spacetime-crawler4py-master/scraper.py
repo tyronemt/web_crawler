@@ -140,7 +140,7 @@ def check_netloc(parsed_url):
 
     sd = ".".join(netloc.split("."))
 
-    if netloc.count(".") >= 4:
+    if netloc.count(".") >= 3:
         sd = ".".join(netloc.split(".")[1:])
     
     if "/department/information_computer_sciences" in parsed_url.path:
