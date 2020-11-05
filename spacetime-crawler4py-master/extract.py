@@ -2,7 +2,6 @@ from collections import defaultdict
 from urllib.parse import urlparse
 
 def unique(url_text_file):
-    print("f")
     s = set()
     file = open("report.txt", "a", encoding = "utf-8")
     file2 = open(url_text_file,"r", encoding = "utf-8")
@@ -47,12 +46,18 @@ def sort_URLS(url_text_file):
             lst.append(i.rstrip("\n"))
         
         for url in lst:
-            netloc = url.netloc 
-            netloc = netloc.strip("www.")
-=           if 'ics.uci.edu' == netloc:
-                d[url] += 1
+            parsed = urlparse(url)
+            netloc = parsed.netloc 
+            if ("www") in netloc:
+                netloc = netloc.strip("www.")
+            sd = ".".join(netloc.split("."))
 
-        for k,v in sorted(d.items()):
+            if len(netloc.split(".")) >= 4:
+                sd = ".".join(netloc.split(".")[1:])
+            if 'ics.uci.edu' == sd:
+                d[netloc] += 1
+
+        for k,v in sorted(d.items(), key = lambda x: x[0].lower()):
             file.write(k + " URL #: " + str(v) + "\n")
                   
     file.write("\n")
@@ -64,13 +69,19 @@ def get_50_most(words_file):
     stop_words = open("stop_words.txt", "r", encoding = "utf-8")
     stop_list = []
     for line in stop_words: 
-        line = line.rstrip()
+        line = line.rstrip("\n")
         stop_list.append(str(line))
+
     with open(words_file, 'r', encoding='utf8') as words_file:
-        for line in words_file: #add a condition where the it will not add the word into the dictionary if it is a stop word. 
-            for word in list(line):
-                if word not in stop_list:
-                    frequencies[word] += 1 #creates the dict of frequencies in the words file
+        for line in words_file: #add a condition where the it will not add the word into the dictionary if it is a stop word.
+            line = line.rstrip("\n")
+            temp = line.replace("[", "")
+            temp2 = temp.replace("]","")
+            temp3 = temp2.replace("'","")
+            line_split = temp3.split(",")
+            for word in line_split:
+                if word.lower() not in stop_list and len(word) > 1:
+                    frequencies[word.lower()] += 1 #creates the dict of frequencies in the words file
     counter = 0
     for (word,frequency) in sorted(frequencies.items(), key = lambda x: -x[1]): #loops through the sorted dictionary where the largest frequencies are in the front
         if counter < 50: #counter to make sure it doesnt go over 50
@@ -86,8 +97,6 @@ def get_50_most(words_file):
 
 if __name__ == "__main__":
     unique("URLs.txt")
-    print("starting longest")
     longest("longest_page.txt")
-    print("starting sort")
-    sort_URLS("URLs.txt")
     get_50_most("content.txt")
+    sort_URLS("URLs.txt")
