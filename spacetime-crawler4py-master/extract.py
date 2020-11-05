@@ -49,7 +49,7 @@ def sort_URLS(url_text_file):
         for url in lst:
             if 'ics.uci.edu' in url:
                 counter += 1
-                file.write(url + " URL #: " + str(counter) +  "\n")
+                file.write(url + " URL #: " + str(counter) + "\n")
                 
     file.write("\n")
     file.close()
@@ -60,8 +60,8 @@ def get_50_most(words_file):
     stop_words = open("stop_words.txt", "r", encoding = "utf-8")
     stop_list = []
     for line in stop_words: 
-        line = line.rstrip() 
-        stop_list += line.split()
+        line = line.rstrip()
+        stop_list.append(str(line))
     with open(words_file, 'r', encoding='utf8') as words_file:
         for line in words_file: #add a condition where the it will not add the word into the dictionary if it is a stop word. 
             for word in list(line):
