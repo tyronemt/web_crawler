@@ -7,7 +7,7 @@ from urllib.parse import urlparse
 # SETTING GLOBAL VARIABLES
 visited_urls = []
 valid_netloc = ["ics.uci.edu","cs.uci.edu","stat.uci.edu","informatics.uci.edu"]
-skip = ["archive.uci.edu", "intranet.ics.uci.edu", "grape.ics.uci.edu", "evoke.ics.uci.edu"]
+skip = ["archive.uci.edu", "intranet.ics.uci.edu", "grape.ics.uci.edu", "evoke.ics.uci.edu", "ganglia.ics.uci.edu"]
 
 no_list =["calendar","events","img","apk", "jpg","css","js","bmp","pptx","doc","docx","xls","data","dat","gif","gz","svg","txt","py","rkt","json","pdf","jpeg","ico","png",
             "mp2","mp3","mp4","wav","avi","mov","pdf","ps","eps","tex","ppt","exe",
@@ -150,6 +150,9 @@ def check_netloc(parsed_url):
 
     if "/department/information_computer_sciences" in parsed_url.path:
         return True
+
+    if netloc == "ics.uci.edu" and "publications" in parsed_url.path:
+        return False
 
     if netloc == "hack.ics.uci.edu" and "gallery" in parsed_url.path:
         return False
