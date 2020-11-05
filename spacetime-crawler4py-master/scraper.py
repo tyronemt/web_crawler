@@ -134,13 +134,15 @@ def if_not_crawled(url, respons):
 
 def check_netloc(parsed_url):
 
-    netloc = parsed_url.netloc 
-    netloc = netloc.strip("www.")
+    netloc = parsed_url.netloc
+    if "www." in netloc:
+        netloc = netloc.strip("www.")
 
-    sd = ".".join(netloc.split("."))
+    netloc_split = netloc.split(".")
+    sd = ".".join(netloc_split)
 
     if len(netloc.split(".")) >= 4:
-        sd = ".".join(netloc.split(".")[1:])
+        sd = ".".join(netloc_split[1:])
 
 
     if netloc == "wics.ics.uci.edu" and \
