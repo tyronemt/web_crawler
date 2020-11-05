@@ -91,7 +91,6 @@ def is_valid(url):
         if parsed.scheme not in set(["http", "https"]):
             return False
 
-
         for i in no_list:
             if i in parsed.query or i in parsed.path:
                 return False
@@ -149,7 +148,7 @@ def check_netloc(parsed_url):
         print("FALSE")
         return False
 
-    if netloc == "today.uci.edu" and "/department/information_computer_sciences" in parsed_url.path:
+    if "/department/information_computer_sciences" in parsed_url.path:
         return True
 
     if netloc == "hack.ics.uci.edu" and "gallery" in parsed_url.path:
