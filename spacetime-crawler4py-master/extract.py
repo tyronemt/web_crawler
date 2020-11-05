@@ -11,7 +11,7 @@ def unique(url_text_file):
 
     l = len(s)
 
-    file.write("# of unique urls: " + str(l) + "\n")
+    file.write("# of unique urls: " + str(l) + "\n\n")
     file.close()
     file2.close()
 
@@ -34,22 +34,23 @@ def longest(url_text_file):
         i += 1
 
     file.write("Longest Page URL: " + str(longest) + "\n")
-    file.write("Length of Longest Page: " + str(length) + "\n")
+    file.write("Length of Longest Page: " + str(length) + "\n\n")
     file.close()
 
 def sort_URLS(url_text_file):
     counter = 0
-    file = open("ics.txt", "a", encoding = "utf-8")
+    file = open("report.txt", "a", encoding = "utf-8")
     with open(url_text_file, 'a', encoding='utf8') as url_file: #sorts URLs then extracts the ICS subdomains and writes them into answer.txt
         for url in sorted(url_file):
             if 'ics.uci.edu' in url:
                 counter += 1
                 file.write(url + " URL #: " + str(counter) +  "\n")
+    file.write("\n")
     file.close()
 
 def get_50_most(words_file):
     frequencies = defaultdict(int)
-    output_file = open("number_3.txt", "a", encoding = "utf-8")
+    output_file = open("report.txt", "a", encoding = "utf-8")
     stop_words = open("stopwords.txt", "a", encoding = "utf-8")
     stop_list = []
     for line in stop_words: 
@@ -67,6 +68,7 @@ def get_50_most(words_file):
             counter += 1
         else:
             break
+    output_file.write("\n")
     output_file.close()
     stop_words.close()
         
