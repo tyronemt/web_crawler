@@ -1,4 +1,5 @@
 from collections import defaultdict
+from urllib.parse import urlparse
 
 def unique(url_text_file):
     print("f")
@@ -39,21 +40,21 @@ def longest(url_text_file):
 
 def sort_URLS(url_text_file):
     lst = []
-    counter = 0
+    d = defaultdict(int)
     file = open("report.txt", "a", encoding = "utf-8")
     with open(url_text_file, 'r', encoding='utf8') as url_file: #sorts URLs then extracts the ICS subdomains and writes them into answer.txt
         for i in url_file:
             lst.append(i.rstrip("\n"))
         
-        lst = sorted(lst)
         for url in lst:
-            if counter < 50:
-                if 'ics.uci.edu' in url:
-                    counter += 1
-                    file.write(url + " URL #: " + str(counter) + "\n")
-            else:
-                break
-                
+            netloc = url.netloc 
+            netloc = netloc.strip("www.")
+=           if 'ics.uci.edu' == netloc:
+                d[url] += 1
+
+        for k,v in sorted(d.items()):
+            file.write(k + " URL #: " + str(v) + "\n")
+                  
     file.write("\n")
     file.close()
 
