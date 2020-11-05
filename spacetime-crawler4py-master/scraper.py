@@ -136,27 +136,16 @@ def check_netloc(parsed_url):
 
     netloc = parsed_url.netloc
     if "www." in netloc:
-        netloc = netloc.strip("www.")
+        netloc = netloc.replace("www.", "")
 
-    netloc_split = netloc.split(".")
-    sd = ".".join(netloc_split)
+    sd = ".".join(netloc.split("."))
 
-    if len(netloc.split(".")) >= 4:
-        sd = ".".join(netloc_split[1:])
-
-
-    if netloc == "wics.ics.uci.edu" and \
-       "/events" in parsed_url.path:
-        print("FALSE")
-        return False
-
+    if netloc.count(".") >= 4:
+        sd = ".".join(netloc.split(".")[1:])
+    
     if "/department/information_computer_sciences" in parsed_url.path:
         return True
-
-    if netloc == "ics.uci.edu" and "publications" in parsed_url.path:
-        return False
-
-    if netloc == "hack.ics.uci.edu" and "gallery" in parsed_url.path:
+    elif (netloc == "hack.ics.uci.edu" and "gallery" in parsed_url.path) or (netloc == "ics.uci.edu" and "publications" in parsed_url.path):
         return False
     
     for i in skip:
@@ -166,9 +155,5 @@ def check_netloc(parsed_url):
     for i in valid_netloc:
         if sd == i:
             return True
-
-    
-        
-    
 
     return False
