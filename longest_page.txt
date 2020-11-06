@@ -6262,8 +6262,6 @@ https://flamingo.ics.uci.edu/spellchecker
 521
 http://www.ics.uci.edu/~sjavanma
 893
-http://www.ics.uci.edu/%7Esjavanma/CollabCom
-52047
 http://www.ics.uci.edu/%7Elopes
 203
 http://www.ics.uci.edu/~yganjisa
@@ -8000,8 +7998,6 @@ http://www.ics.uci.edu/~jacobson/cs122b/Project/04-JDBCex1.java
 194
 https://www.ics.uci.edu/~jacobson/cs122b/Project/03-Phase0.html
 6278
-http://www.ics.uci.edu/~jacobson/cs122b/Project/TomcatTest.war
-86129
 http://www.ics.uci.edu/~jacobson/cs122b/Project/elog.h
 1412
 http://www.ics.uci.edu/~jacobson/cs122b/Project/pg_config_os.h
@@ -8132,8 +8128,6 @@ https://www.ics.uci.edu/~jacobson/ics10A/LabManual/08-Assignment5.html
 10156
 https://www.ics.uci.edu/~jacobson/ics10A/LabManual/07-Assignment4.html
 1720
-http://www.ics.uci.edu/~jacobson/ics10A/Lab4/Supernova.mpg
-162233
 https://www.ics.uci.edu/~jacobson/ics10A/LabManual/06-Assignment3.html
 1552
 https://www.ics.uci.edu/~jacobson/ics10A/LabManual/05-Assignment2.html
@@ -8720,8 +8714,6 @@ https://dynamo.ics.uci.edu/demo.html
 652
 https://dynamo.ics.uci.edu/index.html
 604
-https://dynamo.ics.uci.edu/files/zImage_paapi
-110448
 https://dynamo.ics.uci.edu/faq.html
 32
 https://dynamo.ics.uci.edu/related.html
@@ -15118,8 +15110,6 @@ https://sli.ics.uci.edu/Calendar/Calendar
 61
 https://sli.ics.uci.edu/AIStats/RecentChanges
 46
-https://sli.ics.uci.edu/AIStats/Postings
-21502
 https://sli.ics.uci.edu/AIML/RecentChanges
 48
 http://sli.ics.uci.edu/AIML/PreNIPS2010
@@ -15268,8 +15258,6 @@ http://www.ics.uci.edu/~chenli/sigmod07ugrad
 796
 http://www.ics.uci.edu/~hshirani/webobjects
 1182
-http://www.ics.uci.edu/~cs224
-86243
 http://www.ics.uci.edu/community/news/press/view_press?id=73
 981
 http://tastier.ics.uci.edu

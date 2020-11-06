@@ -2,8 +2,8 @@ Answering Question # 1:
 # of unique urls: 8586
 
 Answering Question # 2:
-Longest Page URL: http://www.ics.uci.edu/~jacobson/ics10A/Lab4/Supernova.mpg
-Length of Longest Page: 162233
+Longest Page URL: https://graphics.ics.uci.edu/publication.html
+Length of Longest Page: 18957
 
 Answering Question # 3:
 
