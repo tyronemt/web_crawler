@@ -35,7 +35,7 @@ def extract_next_links(url, resp):
 
     if is_valid(url):
         parsed_url = urlparse(url)
-        d = "https://" + parsed_url.netloc
+        d = "https://" + parsed_url.netloc #parses the url and gets the netloc which is the main section of the URl that we want 
         if if_not_crawled(url, resp):
             try:
                  # CITE: https://python.gotrained.com/beautifulsoup-extracting-urls/ 
@@ -49,8 +49,8 @@ def extract_next_links(url, resp):
                 
                 for text in text_list:
                     text = re.sub(r"[^a-zA-Z0-9 :]", " ", text)
-                    text_split = text.split()
-                    word_list += text_split
+                    text_split = text.split() #tokenizes the code and uses regex to match all the tokens that we want
+                    word_list += text_split #adds this into a list so that we can use the data again for analysis.
 
                 # DO NOT INCLUDE web pages with less than 10 tokens ("too low content")
                 if (len(word_list) > 10):
@@ -75,7 +75,7 @@ def extract_next_links(url, resp):
 
 
 def valid_response_status(respo):
-    if 200<=respo.status<=299 and respo.status != 204: #status 204 means that theres no content
+    if 200<=respo.status<=299 and respo.status != 204: #status 204 means that theres no content, checks to make sure its between 20 and 299 inclusive but skips 204
         return True
     else:
         return False
@@ -117,7 +117,7 @@ def if_not_crawled(url, respons):
     if valid_response_status(respons):
         if url[-1] == "/":
             if url not in visited_urls:
-                visited_urls.append(url[:-1])
+                visited_urls.append(url[:-1]) #processes the URLs so that we can check it consistently in our Visited URLs, if its not in there then we add it and return true, else we return false 
                 return True
             else:
                 return False
@@ -136,13 +136,13 @@ def check_netloc(parsed_url):
 
     netloc = parsed_url.netloc
     if "www." in netloc:
-        netloc = netloc.strip("www.")
+        netloc = netloc.strip("www.") #after parsing the URL, we remove www from the netloc
 
     netloc_split = netloc.split(".")
     sd = ".".join(netloc_split)
 
     if len(netloc.split(".")) >= 4:
-        sd = ".".join(netloc_split[1:])
+        sd = ".".join(netloc_split[1:]) #when the netloc has more 3 sections, theres a section of the netloc that is unwanted so we get rid of it but slicing
 
 
     if netloc == "wics.ics.uci.edu" and \
@@ -150,7 +150,7 @@ def check_netloc(parsed_url):
         print("FALSE")
         return False
 
-    if "/department/information_computer_sciences" in parsed_url.path:
+    if "/department/information_computer_sciences" in parsed_url.path: #checks against these URLs so that we can avoid traps
         return True
 
     if netloc == "ics.uci.edu" and "publications" in parsed_url.path:
@@ -160,11 +160,11 @@ def check_netloc(parsed_url):
         return False
     
     for i in skip:
-        if netloc == i:
+        if netloc == i: #iterates through the skip list and makes sure the URLs we are checking do not fall under that category
             return False
     
     for i in valid_netloc:
-        if sd == i:
+        if sd == i: #iterates through the valid URLs and makes sure the URL we are crawling is sufficient
             return True
 
     
