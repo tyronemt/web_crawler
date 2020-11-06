@@ -10,7 +10,7 @@ valid_netloc = ["ics.uci.edu","cs.uci.edu","stat.uci.edu","informatics.uci.edu"]
 skip = ["archive.uci.edu", "intranet.ics.uci.edu", "grape.ics.uci.edu", "evoke.ics.uci.edu", "ganglia.ics.uci.edu", "cbcl.ics.uci.edu"]
 
 no_list =["calendar","events","img","apk", "jpg","css","js","bmp","pptx","doc","docx","xls","data","dat","gif","gz","svg","txt","py","rkt","json","pdf","jpeg","ico","png",
-            "mp2","mp3","mp4","wav","avi","mov","pdf",".ps","eps","tex","ppt","exe", "odc","mpg",".nb", ".java", ".bib", "xml","scm",
+            "mp2","mp3","mp4","wav","avi","mov","pdf","ps","eps","tex","ppt","exe", "odc",
             "tar","msi","bin","psd","dmg","epub","jar","csv","zip","rar","wp-content"]
 
 
@@ -136,16 +136,27 @@ def check_netloc(parsed_url):
 
     netloc = parsed_url.netloc
     if "www." in netloc:
-        netloc = netloc.replace("www.", "")
+        netloc = netloc.strip("www.")
 
-    sd = ".".join(netloc.split("."))
+    netloc_split = netloc.split(".")
+    sd = ".".join(netloc_split)
 
-    if netloc.count(".") >= 3:
-        sd = ".".join(netloc.split(".")[1:])
-    
+    if len(netloc.split(".")) >= 4:
+        sd = ".".join(netloc_split[1:])
+
+
+    if netloc == "wics.ics.uci.edu" and \
+       "/events" in parsed_url.path:
+        print("FALSE")
+        return False
+
     if "/department/information_computer_sciences" in parsed_url.path:
         return True
-    elif (netloc == "hack.ics.uci.edu" and "gallery" in parsed_url.path) or (netloc == "ics.uci.edu" and "publications" in parsed_url.path) or (netloc == "ics.uci.edu" and "~yamingy" in parsed_url.path):
+
+    if netloc == "ics.uci.edu" and "publications" in parsed_url.path:
+        return False
+
+    if netloc == "hack.ics.uci.edu" and "gallery" in parsed_url.path:
         return False
     
     for i in skip:
@@ -155,5 +166,9 @@ def check_netloc(parsed_url):
     for i in valid_netloc:
         if sd == i:
             return True
+
+    
+        
+    
 
     return False
