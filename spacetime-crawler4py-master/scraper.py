@@ -132,15 +132,23 @@ def if_not_crawled(url, respons):
 
 
 
+def process_sd(net_loc):
+    if "www." in netloc:
+        netloc = netloc.replace("www.", "")
+    sd = ".".join(netloc.split("."))
+    return sd
+
+
 def check_netloc(parsed_url):
 
     netloc = parsed_url.netloc
-    if "www." in netloc:
-        netloc = netloc.replace("www.", "")
+    sd = process_sd(netloc)
 
-    sd = ".".join(netloc.split("."))
-
-    if netloc.count(".") >= 3:
+    counter = 0
+    for element in str(netloc):
+        if element == ".":
+            counter += 1
+    if counter >= 3:
         sd = ".".join(netloc.split(".")[1:])
     
     if "/department/information_computer_sciences" in parsed_url.path:
@@ -148,12 +156,9 @@ def check_netloc(parsed_url):
     elif (netloc == "hack.ics.uci.edu" and "gallery" in parsed_url.path) or (netloc == "ics.uci.edu" and "publications" in parsed_url.path):
         return False
     
-    for i in skip:
-        if netloc == i:
-            return False
-    
-    for i in valid_netloc:
-        if sd == i:
-            return True
-
-    return False
+    if netloc in skip:
+        return False
+    elif sd in valid_netloc:
+        return True
+    else:
+        return False
