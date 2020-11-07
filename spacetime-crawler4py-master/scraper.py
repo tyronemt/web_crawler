@@ -26,9 +26,6 @@ def scraper(url, resp):
 def extract_next_links(url, resp):
     list_links = []
     word_list = []
-    URLs_file = open("URLs.txt", 'a', encoding='utf-8')
-    largest_URL = open("largest_URL.txt", 'a', encoding='utf-8')
-    tokens_file = open("tokens.txt", 'a', encoding='utf-8')
 
     if is_valid(url):
         # create urlparse object of url to later access specific parts we need of current URL
@@ -53,21 +50,15 @@ def extract_next_links(url, resp):
 
                 # DO NOT INCLUDE web pages with less than 10 tokens ("too low content")
                 if (len(word_list) > 10):
-                    largest_URL.write(url + '\n' + str(len(word_list)) +'\n')
-                    tokens_file.write(str(word_list) + '\n')
-
-                    URLs_file.write(url + '\n')
+                    update_tokens_file(word_list)
+                    update_largest_URL(url, word_list)
+                    update_URls_file(url)
                     # iterate through tags to obtain links present on web page
                     for tag in a_tags:
                         list_links.append(urllib.parse.urljoin(urlunparse(parsed_url), tag.get('href')).split('#')[0]) #adding links to list after defragging the URL
 
             except:
                 print("Error processing next URLs")
-
-    # Close openend files
-    URLs_file.close()
-    largest_URL.close()
-    tokens_file.close()
 
     return list_links #returns empty list if the URL is crawled or if the URL is not valid
 
@@ -161,3 +152,32 @@ def isValid_netloc(parsed_url):
     else:
         return False
 
+
+# helper function that writes into URLs_file to store unique urls we encounter
+def update_URls_file(url):
+    # open file to append data at end
+    URLs_file = open("URLs.txt", 'a', encoding='utf-8')
+    # update file
+    URLs_file.write(url + '\n')
+    # close existing file
+    URLs_file.close()
+
+
+# helper function that writes into largest_URL to store the current standing largest_url
+def update_largest_URL(url, word_list):
+    # open file to append data at end
+    largest_URL = open("largest_URL.txt", 'a', encoding='utf-8')
+    # update file
+    largest_URL.write(url + '\n' + str(len(word_list)) + '\n')
+    # close existing file
+    largest_URL.close()
+
+
+# helper function that writes into tokens_file to store all current tokens
+def update_tokens_file(word_list):
+    # open file to append data at end
+    tokens_file = open("tokens.txt", 'a', encoding='utf-8')
+    # update file
+    tokens_file.write(str(word_list) + '\n')
+    # close existing file
+    tokens_file.close()
