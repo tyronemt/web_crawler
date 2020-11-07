@@ -17,7 +17,7 @@ skip = ["archive.uci.edu", "intranet.ics.uci.edu", "grape.ics.uci.edu", "evoke.i
 # Detect and avoid dead URLs that return a 200 status but no data (click here to see what the different HTTP status codes mean (Links to an external site.))
 # Detect and avoid crawling very large files, especially if they have low information value
 
-def scraper(url, resp):z
+def scraper(url, resp):
     links = extract_next_links(url, resp)
     return [link for link in links if is_valid(link)]
 
@@ -61,7 +61,7 @@ def extract_next_links(url, resp):
                         list_links.append(urllib.parse.urljoin(urlunparse(parsed_url), tag.get('href')).split('#')[0]) #adding links to list after defragging the URL
 
             except:
-                print("Error processing next URLs")
+                print("Error Processing The Next URLs")
 
     # Close openend files           
     URLs_file.close()
@@ -126,11 +126,11 @@ def if_not_crawled(url, respons):
         return False
 
 
-
 def process_sd(net_loc):
-    if "www." in netloc:
-        netloc = netloc.replace("www.", "")
-    sd = ".".join(netloc.split("."))
+    sd = net_loc
+    if "www." in net_loc:
+        netloc = net_loc.replace("www.", "")
+        return netloc
     return sd
 
 
