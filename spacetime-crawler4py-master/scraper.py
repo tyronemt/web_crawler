@@ -61,7 +61,7 @@ def extract_next_links(url, resp):
                         list_links.append(urllib.parse.urljoin(urlunparse(parsed_url), tag.get('href')).split('#')[0]) #adding links to list after defragging the URL
 
             except:
-                print("Error processing next URLs")
+                print("Error Processing The Next URLs")
 
     # Close openend files           
     URLs_file.close()
