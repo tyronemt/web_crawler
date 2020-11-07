@@ -2,7 +2,7 @@
 # File that holds the helper functions that take in text files created/stored
 # when scraping to answer analytic questions
 
-# answers are sunsequently written into "analytics.txt"
+# answers are subsequently written into "analytics.txt"
 
 from collections import defaultdict
 from urllib.parse import urlparse
@@ -73,7 +73,8 @@ def get_50_most(words_file):
         stop_list.append(str(line))
 
     with open(words_file, 'r', encoding='utf8') as words_file:
-        for line in words_file: #add a condition where the it will not add the word into the dictionary if it is a stop word.
+        # add a condition where the it will not add the word into the dictionary if it is a stop word.
+        for line in words_file:
             line = line.rstrip("\n")
             temp = line.replace("[", "")
             temp2 = temp.replace("]","")
@@ -81,10 +82,11 @@ def get_50_most(words_file):
             line_split = temp3.split(",")
             for word in line_split:
                 if (word.lower()[1:] not in stop_list) and len(word[1:]) > 1 and word[1:].isalpha():
-                    frequencies[word.lower()[1:]] += 1 #creates the dict of frequencies in the words file
+                    frequencies[word.lower()[1:]] += 1 # creates the dict of frequencies in the words file
     counter = 0
-    for (word,frequency) in sorted(frequencies.items(), key = lambda x: -x[1]): #loops through the sorted dictionary where the largest frequencies are in the front
-        if counter < 50: #counter to make sure it doesnt go over 50
+    # loops through the sorted dictionary where the largest frequencies are in the front
+    for (word,frequency) in sorted(frequencies.items(), key = lambda x: -x[1]):
+        if counter < 50: # counter to make sure it doesnt go over 50
             output_file.write(word + "-->" + str(frequency) + "\n")
             counter += 1
         else:
@@ -103,7 +105,8 @@ def sort_URLS(url_text_file):
     d = defaultdict(int)
     file = open("analytics.txt", "a", encoding = "utf-8")
     file.write("Answering Question # 4:" + "\n\n")
-    with open(url_text_file, 'r', encoding='utf8') as url_file: #sorts URLs then extracts the ICS subdomains and writes them into answer.txt
+    # sorts URLs then extracts the ICS subdomains and writes them into answer.txt
+    with open(url_text_file, 'r', encoding='utf8') as url_file:
         for i in url_file:
             lst.append(i.rstrip("\n"))
         

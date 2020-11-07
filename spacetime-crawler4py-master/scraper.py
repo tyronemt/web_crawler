@@ -126,11 +126,11 @@ def if_not_crawled(url, respons):
         return False
 
 
-
 def process_sd(net_loc):
+    sd = net_loc
     if "www." in net_loc:
         netloc = net_loc.replace("www.", "")
-    sd = ".".join(netloc.split("."))
+        return netloc
     return sd
 
 
