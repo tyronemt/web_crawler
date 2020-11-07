@@ -9,9 +9,6 @@ visited_urls = []
 valid_netloc = ["ics.uci.edu","cs.uci.edu","stat.uci.edu","informatics.uci.edu"]
 skip = ["archive.uci.edu", "intranet.ics.uci.edu", "grape.ics.uci.edu", "evoke.ics.uci.edu", "ganglia.ics.uci.edu", "cbcl.ics.uci.edu"]
 
-no_list =["calendar","events","img","apk", "jpg","css","js","bmp","pptx","doc","docx","xls","data","dat","gif","gz","svg","txt","py","rkt","json","pdf","jpeg","ico","png",
-            "mp2","mp3","mp4","wav","avi","mov","pdf","ps","eps","tex","ppt","exe", "odc",
-            "tar","msi","bin","psd","dmg","epub","jar","csv","zip","rar","wp-content"]
 
 
 # Honor the politeness delay for each site
@@ -91,18 +88,15 @@ def is_valid(url):
         if parsed.scheme not in set(["http", "https"]):
             return False
 
-        for i in no_list:
-            if i in parsed.query or i in parsed.path:
-                return False
 
         return not re.match(
-            r".*\.(css|js|bmp|gif|jpe?g|ico"
-            + r"|png|tiff?|mid|mp2|mp3|mp4"
+            r".*\.(css|js|bmp|gif|jpe?g|ico|calendar|events|img|apk|jpg|svg|txt|.py|rkt"
+            + r"|png|tiff?|mid|mp2|mp3|mp4|json|jpeg"
             + r"|wav|avi|mov|mpeg|ram|m4v|mkv|ogg|ogv|pdf"
             + r"|ps|eps|tex|ppt|pptx|doc|docx|xls|xlsx|names"
             + r"|data|dat|exe|bz2|tar|msi|bin|7z|psd|dmg|iso"
-            + r"|epub|dll|cnf|tgz|sha1"
-            + r"|thmx|mso|arff|rtf|jar|csv"
+            + r"|epub|dll|cnf|tgz|sha1|odc"
+            + r"|thmx|mso|arff|rtf|jar|csv|wp-content"
             + r"|rm|smil|wmv|swf|wma|zip|rar|gz)$", parsed.path.lower())
 
         
