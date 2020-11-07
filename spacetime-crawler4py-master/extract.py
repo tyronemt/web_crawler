@@ -2,7 +2,7 @@
 # File that holds the helper functions that take in text files created/stored
 # when scraping to answer analytic questions
 
-# answers are sunsequently written into "report.txt"
+# answers are sunsequently written into "analytics.txt"
 
 from collections import defaultdict
 from urllib.parse import urlparse
@@ -11,7 +11,7 @@ from urllib.parse import urlparse
 #######         how many unique urls?           #######
 def unique(url_text_file):
     s = set()   # store URLS in set to avoid duplicates
-    file = open("report.txt", "a", encoding = "utf-8")
+    file = open("analytics.txt", "a", encoding = "utf-8")
     file2 = open(url_text_file,"r", encoding = "utf-8")
     file.write("Answering Question # 1:" + "\n")
 
@@ -19,7 +19,7 @@ def unique(url_text_file):
     for urls in file2:
         s.add(urls.rstrip("\n"))
 
-    # write length/# of unique urls into report.txt
+    # write length/# of unique urls into analytics.txt
     file.write("# of unique urls: " + str(len(s)) + "\n\n")
     file.close()
     file2.close()
@@ -28,7 +28,7 @@ def unique(url_text_file):
 #######               QUESTION 2                #######
 #######         what was longest page?          #######
 def longest(url_text_file):
-    file = open("report.txt", "a", encoding = "utf-8")
+    file = open("analytics.txt", "a", encoding = "utf-8")
     file2 = open(url_text_file,"r", encoding = "utf-8")
     file.write("Answering Question # 2:" + "\n")
     i = 0           # indexer to check subsequent URLs while iterating
@@ -50,7 +50,7 @@ def longest(url_text_file):
                 length = int(urls.strip("\n"))
         i += 1
 
-    # write longest page and its length to report.txt
+    # write longest page and its length to analytics.txt
     file.write("Longest Page URL: " + str(longest) + "\n")
     file.write("Length of Longest Page: " + str(length) + "\n\n")
     file.close()
@@ -61,7 +61,7 @@ def longest(url_text_file):
 #######          50 most common words?          #######
 def get_50_most(words_file):
     frequencies = defaultdict(int)
-    output_file = open("report.txt", "a", encoding = "utf-8")
+    output_file = open("analytics.txt", "a", encoding = "utf-8")
     stop_words = open("stop_words.txt", "r", encoding = "utf-8")
     output_file.write("Answering Question # 3:" + "\n\n")
     output_file.write("50 most common words in the entire set of pages crawled :" + "\n\n")
@@ -101,7 +101,7 @@ def get_50_most(words_file):
 def sort_URLS(url_text_file):
     lst = []
     d = defaultdict(int)
-    file = open("report.txt", "a", encoding = "utf-8")
+    file = open("analytics.txt", "a", encoding = "utf-8")
     file.write("Answering Question # 4:" + "\n\n")
     with open(url_text_file, 'r', encoding='utf8') as url_file: #sorts URLs then extracts the ICS subdomains and writes them into answer.txt
         for i in url_file:
