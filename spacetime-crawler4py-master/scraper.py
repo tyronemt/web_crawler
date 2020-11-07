@@ -2,81 +2,80 @@ import re
 from bs4 import BeautifulSoup
 import urllib
 from urllib.parse import urlparse, urlunparse
- 
-# SETTING GLOBAL VARIABLES
+
+
+# GLOBAL VARIABLES
 visited_urls = []
 valid_netloc = ["ics.uci.edu","cs.uci.edu","stat.uci.edu","informatics.uci.edu"]
 skip = ["archive.uci.edu", "intranet.ics.uci.edu", "grape.ics.uci.edu", "evoke.ics.uci.edu", "ganglia.ics.uci.edu", "cbcl.ics.uci.edu"]
- 
- 
- 
-# Honor the politeness delay for each site
-# Crawl all pages with high textual information content
-# Detect and avoid infinite traps
-# Detect and avoid sets of similar pages with no information
-# Detect and avoid dead URLs that return a 200 status but no data (click here to see what the different HTTP status codes mean (Links to an external site.))
-# Detect and avoid crawling very large files, especially if they have low information value
- 
+
+
+# Honor the politeness delay for each site.
+# Crawl all pages with high textual information content.
+# Detect and avoid infinite traps.
+# Detect and avoid sets of similar pages with no information.
+# Detect and avoid dead URLs that return a 200 status but no data.
+# Detect and avoid crawling very large files, especially if they have low information value.
+
+
 def scraper(url, resp):
     links = extract_next_links(url, resp)
     return [link for link in links if is_valid(link)]
- 
- 
+
+
 def extract_next_links(url, resp):
     list_links = []
     word_list = []
     URLs_file = open("URLs.txt", 'a', encoding='utf-8')
     largest_URL = open("largest_URL.txt", 'a', encoding='utf-8')
     tokens_file = open("tokens.txt", 'a', encoding='utf-8')
- 
+
     if is_valid(url):
         # create urlparse object of url to later access specific parts we need of current URL
         parsed_url = urlparse(url, scheme="https")
- 
+
         if if_not_crawled(url, resp):
             try:
                  # CITE: https://python.gotrained.com/beautifulsoup-extracting-urls/ 
                  # implemented the algorithm to extract links using beautiful soup from this source
                 soup = BeautifulSoup(resp.raw_response.content, "html.parser")
                 a_tags = soup.find_all('a')
- 
+
                 # extracting all text from webpage
                 text_list = soup.text # returns string of all readable text 
                 text_list = text_list.split('\n')
- 
+
                 # tokenize the text on the web page and store it in word_list
                 for text in text_list:
                     text = re.sub(r"[^a-zA-Z0-9 :]", " ", text)
                     text_split = text.split()
                     word_list += text_split
- 
+
                 # DO NOT INCLUDE web pages with less than 10 tokens ("too low content")
                 if (len(word_list) > 10):
                     largest_URL.write(url + '\n' + str(len(word_list)) +'\n')
                     tokens_file.write(str(word_list) + '\n')
- 
+
                     URLs_file.write(url + '\n')
                     # iterate through tags to obtain links present on web page
                     for tag in a_tags:
                         list_links.append(urllib.parse.urljoin(urlunparse(parsed_url), tag.get('href')).split('#')[0]) #adding links to list after defragging the URL
- 
+
             except:
                 print("Error processing next URLs")
- 
-    # Close openend files           
+
+    # Close openend files
     URLs_file.close()
     largest_URL.close()
     tokens_file.close()
- 
+
     return list_links #returns empty list if the URL is crawled or if the URL is not valid
- 
- 
- 
+
+
+# The 2xx class of status codes indicates the action requested by the client
+# was received, understood, and accepted, but 204 indicates no content.
 def valid_response_status(respo):
-    if 200<=respo.status<=299 and respo.status != 204: #status 204 means that theres no content
-        return True
-    else:
-        return False
+    return 200<=respo.status<=299 and respo.status != 204
 
 
 def is_valid(url):
@@ -99,8 +98,6 @@ def is_valid(url):
             + r"|thmx|mso|arff|rtf|jar|csv|wp-content|gallery"
             + r"|rm|smil|wmv|swf|wma|zip|rar|gz)$", parsed.path.lower())
 
-
-
     except TypeError:
         print("TypeError for ", parsed)
         raise
@@ -108,6 +105,8 @@ def is_valid(url):
 
 def if_not_crawled(url, respons):
     if valid_response_status(respons):
+        # To ensure consistency in the formats of the URL
+        # strings, avoid any extraneous forward slashes.
         if url.endwith("/"):
             url = url.rstrip("/")
         if url in visited_urls:
@@ -117,9 +116,9 @@ def if_not_crawled(url, respons):
             return True
     else:
         return False
- 
- 
 
+
+# Ignores the World Wide Web ('www') subdomain if it is part of network locality.
 def process_sd(net_loc):
     sd = net_loc
     if "www." in net_loc:
@@ -151,6 +150,8 @@ def isValid_netloc(parsed_url):
 
     if "/department/information_computer_sciences" in parsed_url.path:
         return True
+    # Avoids pages like https://www.ics.uci.edu/~smcaleer/publications.html,
+    # as it contains traps in the form of PDF files.
     elif (netloc == "ics.uci.edu" and "publications" in parsed_url.path):
         return False
     if netloc in skip:
@@ -159,4 +160,4 @@ def isValid_netloc(parsed_url):
         return True
     else:
         return False
- 
+
