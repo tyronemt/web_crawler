@@ -1,3 +1,8 @@
+Tyrone Tong: 39813123
+James Banh: 52316090
+Andrew Wang Chen: 31345312
+Brandon Khong: 42562703
+
 Answering Question # 1:
 # of unique urls: 8586
 
