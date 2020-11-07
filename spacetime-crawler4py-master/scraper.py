@@ -2,83 +2,83 @@ import re
 from bs4 import BeautifulSoup
 import urllib
 from urllib.parse import urlparse, urlunparse
-
+ 
 # SETTING GLOBAL VARIABLES
 visited_urls = []
 valid_netloc = ["ics.uci.edu","cs.uci.edu","stat.uci.edu","informatics.uci.edu"]
 skip = ["archive.uci.edu", "intranet.ics.uci.edu", "grape.ics.uci.edu", "evoke.ics.uci.edu", "ganglia.ics.uci.edu", "cbcl.ics.uci.edu"]
-
-
-
+ 
+ 
+ 
 # Honor the politeness delay for each site
 # Crawl all pages with high textual information content
 # Detect and avoid infinite traps
 # Detect and avoid sets of similar pages with no information
 # Detect and avoid dead URLs that return a 200 status but no data (click here to see what the different HTTP status codes mean (Links to an external site.))
 # Detect and avoid crawling very large files, especially if they have low information value
-
+ 
 def scraper(url, resp):
     links = extract_next_links(url, resp)
     return [link for link in links if is_valid(link)]
-
-
+ 
+ 
 def extract_next_links(url, resp):
     list_links = []
     word_list = []
     URLs_file = open("URLs.txt", 'a', encoding='utf-8')
-    longest_page_file = open("longest_page.txt", 'a', encoding='utf-8')
-    content_file = open("content.txt", 'a', encoding='utf-8')
-
+    largest_URL = open("largest_URL.txt", 'a', encoding='utf-8')
+    tokens_file = open("tokens.txt", 'a', encoding='utf-8')
+ 
     if is_valid(url):
         # create urlparse object of url to later access specific parts we need of current URL
         parsed_url = urlparse(url, scheme="https")
-        
+ 
         if if_not_crawled(url, resp):
             try:
                  # CITE: https://python.gotrained.com/beautifulsoup-extracting-urls/ 
                  # implemented the algorithm to extract links using beautiful soup from this source
                 soup = BeautifulSoup(resp.raw_response.content, "html.parser")
                 a_tags = soup.find_all('a')
-
+ 
                 # extracting all text from webpage
                 text_list = soup.text # returns string of all readable text 
                 text_list = text_list.split('\n')
-                
+ 
                 # tokenize the text on the web page and store it in word_list
                 for text in text_list:
                     text = re.sub(r"[^a-zA-Z0-9 :]", " ", text)
                     text_split = text.split()
                     word_list += text_split
-
+ 
                 # DO NOT INCLUDE web pages with less than 10 tokens ("too low content")
                 if (len(word_list) > 10):
-                    longest_page_file.write(url + '\n' + str(len(word_list)) +'\n')
-                    content_file.write(str(word_list) + '\n')
-
+                    largest_URL.write(url + '\n' + str(len(word_list)) +'\n')
+                    tokens_file.write(str(word_list) + '\n')
+ 
                     URLs_file.write(url + '\n')
                     # iterate through tags to obtain links present on web page
                     for tag in a_tags:
                         list_links.append(urllib.parse.urljoin(urlunparse(parsed_url), tag.get('href')).split('#')[0]) #adding links to list after defragging the URL
-
+ 
             except:
-                print("Error Processing The Next URLs")
-
+                print("Error processing next URLs")
+ 
     # Close openend files           
     URLs_file.close()
-    longest_page_file.close()
-    content_file.close()
-
+    largest_URL.close()
+    tokens_file.close()
+ 
     return list_links #returns empty list if the URL is crawled or if the URL is not valid
-
-
-
+ 
+ 
+ 
 def valid_response_status(respo):
     if 200<=respo.status<=299 and respo.status != 204: #status 204 means that theres no content
         return True
     else:
         return False
-    
-    
+ 
+ 
 def is_valid(url):
     try:
         parsed = urlparse(url)
@@ -97,7 +97,7 @@ def is_valid(url):
             + r"|ps|eps|tex|ppt|pptx|doc|docx|xls|xlsx|names"
             + r"|data|dat|exe|bz2|tar|msi|bin|7z|psd|dmg|iso"
             + r"|epub|dll|cnf|tgz|sha1|odc"
-            + r"|thmx|mso|arff|rtf|jar|csv|wp-content"
+            + r"|thmx|mso|arff|rtf|jar|csv|wp-content|gallery"
             + r"|rm|smil|wmv|swf|wma|zip|rar|gz)$", parsed.path.lower())
 
         
@@ -105,9 +105,9 @@ def is_valid(url):
     except TypeError:
         print ("TypeError for ", parsed)
         raise
-
-
-
+ 
+ 
+ 
 def if_not_crawled(url, respons):
     if valid_response_status(respons):
         if url[-1] == "/":
@@ -124,7 +124,8 @@ def if_not_crawled(url, respons):
                 return False
     else:
         return False
-
+ 
+ 
 
 def process_sd(net_loc):
     sd = net_loc
@@ -132,8 +133,8 @@ def process_sd(net_loc):
         netloc = net_loc.replace("www.", "")
         return netloc
     return sd
-
-
+ 
+ 
 def check_netloc(parsed_url):
 
     netloc = parsed_url.netloc
@@ -148,7 +149,7 @@ def check_netloc(parsed_url):
     
     if "/department/information_computer_sciences" in parsed_url.path:
         return True
-    elif (netloc == "hack.ics.uci.edu" and "gallery" in parsed_url.path) or (netloc == "ics.uci.edu" and "publications" in parsed_url.path):
+    elif (netloc == "ics.uci.edu" and "publications" in parsed_url.path):
         return False
     
     if netloc in skip:
@@ -157,3 +158,4 @@ def check_netloc(parsed_url):
         return True
     else:
         return False
+ 
