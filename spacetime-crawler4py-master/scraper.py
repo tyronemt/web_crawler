@@ -17,7 +17,7 @@ skip = ["archive.uci.edu", "intranet.ics.uci.edu", "grape.ics.uci.edu", "evoke.i
 # Detect and avoid dead URLs that return a 200 status but no data (click here to see what the different HTTP status codes mean (Links to an external site.))
 # Detect and avoid crawling very large files, especially if they have low information value
 
-def scraper(url, resp):z
+def scraper(url, resp):
     links = extract_next_links(url, resp)
     return [link for link in links if is_valid(link)]
 
