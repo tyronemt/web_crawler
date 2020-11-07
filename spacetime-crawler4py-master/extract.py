@@ -19,10 +19,8 @@ def unique(url_text_file):
     for urls in file2:
         s.add(urls.rstrip("\n"))
 
-    l = len(s)
-
     # write length/# of unique urls into report.txt
-    file.write("# of unique urls: " + str(l) + "\n\n")
+    file.write("# of unique urls: " + str(len(s)) + "\n\n")
     file.close()
     file2.close()
 
