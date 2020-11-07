@@ -97,7 +97,7 @@ def is_valid(url):
             + r"|ps|eps|tex|ppt|pptx|doc|docx|xls|xlsx|names"
             + r"|data|dat|exe|bz2|tar|msi|bin|7z|psd|dmg|iso"
             + r"|epub|dll|cnf|tgz|sha1|odc"
-            + r"|thmx|mso|arff|rtf|jar|csv|wp-content"
+            + r"|thmx|mso|arff|rtf|jar|csv|wp-content|gallery"
             + r"|rm|smil|wmv|swf|wma|zip|rar|gz)$", parsed.path.lower())
 
         
@@ -148,7 +148,7 @@ def check_netloc(parsed_url):
     
     if "/department/information_computer_sciences" in parsed_url.path:
         return True
-    elif (netloc == "hack.ics.uci.edu" and "gallery" in parsed_url.path) or (netloc == "ics.uci.edu" and "publications" in parsed_url.path):
+    elif (netloc == "ics.uci.edu" and "publications" in parsed_url.path):
         return False
     
     if netloc in skip:
