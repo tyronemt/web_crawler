@@ -77,21 +77,20 @@ def valid_response_status(respo):
         return True
     else:
         return False
- 
- 
+
+
 def is_valid(url):
     try:
         parsed = urlparse(url)
 
-        if check_netloc(parsed) == False:
+        if isValid_netloc(parsed) == False:
             return False
-            
+
         if parsed.scheme not in set(["http", "https"]):
             return False
 
-
         return not re.match(
-            r".*\.(css|js|bmp|gif|jpe?g|ico|calendar|events|img|apk|jpg|svg|txt|.py|rkt"
+            r".*\.(css|js|bmp|gif|jpe?g|ico|calendar|events|event|img|apk|jpg|svg|txt|.py|rkt"
             + r"|png|tiff?|mid|mp2|mp3|mp4|json|jpeg"
             + r"|wav|avi|mov|mpeg|ram|m4v|mkv|ogg|ogv|pdf"
             + r"|ps|eps|tex|ppt|pptx|doc|docx|xls|xlsx|names"
@@ -100,28 +99,22 @@ def is_valid(url):
             + r"|thmx|mso|arff|rtf|jar|csv|wp-content|gallery"
             + r"|rm|smil|wmv|swf|wma|zip|rar|gz)$", parsed.path.lower())
 
-        
+
 
     except TypeError:
-        print ("TypeError for ", parsed)
+        print("TypeError for ", parsed)
         raise
- 
- 
- 
+
+
 def if_not_crawled(url, respons):
     if valid_response_status(respons):
-        if url[-1] == "/":
-            if url not in visited_urls:
-                visited_urls.append(url[:-1])
-                return True
-            else:
-                return False
+        if url.endwith("/"):
+            url = url.rstrip("/")
+        if url in visited_urls:
+            return False
         else:
-            if url not in visited_urls:
-                visited_urls.append(url)
-                return True
-            else:
-                return False
+            visited_urls.append(url)
+            return True
     else:
         return False
  
@@ -133,10 +126,9 @@ def process_sd(net_loc):
         netloc = net_loc.replace("www.", "")
         return netloc
     return sd
- 
- 
-def check_netloc(parsed_url):
 
+
+def isValid_netloc(parsed_url):
     netloc = parsed_url.netloc
     sd = process_sd(netloc)
 
@@ -145,13 +137,14 @@ def check_netloc(parsed_url):
         if element == ".":
             counter += 1
     if counter >= 3:
-        sd = ".".join(netloc.split(".")[1:])
-    
+        netloc_parts = netloc.split(".")
+        netloc_parts.pop(0)
+        sd = ".".join(netloc_parts)
+
     if "/department/information_computer_sciences" in parsed_url.path:
         return True
     elif (netloc == "ics.uci.edu" and "publications" in parsed_url.path):
         return False
-    
     if netloc in skip:
         return False
     elif sd in valid_netloc:
