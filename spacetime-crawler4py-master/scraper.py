@@ -1,15 +1,13 @@
 import re
 from bs4 import BeautifulSoup
 import urllib
-from urllib.parse import urlparse
-
+from urllib.parse import urlparse, urlunparse
 
 # SETTING GLOBAL VARIABLES
 visited_urls = []
 valid_netloc = ["ics.uci.edu","cs.uci.edu","stat.uci.edu","informatics.uci.edu"]
 skip = ["archive.uci.edu", "intranet.ics.uci.edu", "grape.ics.uci.edu", "evoke.ics.uci.edu", "ganglia.ics.uci.edu", "cbcl.ics.uci.edu"]
-
-no_list =["calendar","events","img","apk", "jpg","css","js","bmp","pptx","doc","docx","xls","data","dat","gif","gz","svg","txt","py","rkt","json","pdf","jpeg","ico","png",
+no_list = ["calendar","events","img","apk", "jpg","css","js","bmp","pptx","doc","docx","xls","data","dat","gif","gz","svg","txt","py","rkt","json","pdf","jpeg","ico","png",
             "mp2","mp3","mp4","wav","avi","mov","pdf","ps","eps","tex","ppt","exe", "odc",
             "tar","msi","bin","psd","dmg","epub","jar","csv","zip","rar","wp-content"]
 
@@ -21,7 +19,7 @@ no_list =["calendar","events","img","apk", "jpg","css","js","bmp","pptx","doc","
 # Detect and avoid dead URLs that return a 200 status but no data (click here to see what the different HTTP status codes mean (Links to an external site.))
 # Detect and avoid crawling very large files, especially if they have low information value
 
-def scraper(url, resp):
+def scraper(url, resp):z
     links = extract_next_links(url, resp)
     return [link for link in links if is_valid(link)]
 
@@ -34,8 +32,9 @@ def extract_next_links(url, resp):
     content_file = open("content.txt", 'a', encoding='utf-8')
 
     if is_valid(url):
-        parsed_url = urlparse(url)
-        d = "https://" + parsed_url.netloc
+        # create urlparse object of url to later access specific parts we need of current URL
+        parsed_url = urlparse(url, scheme="https")
+        
         if if_not_crawled(url, resp):
             try:
                  # CITE: https://python.gotrained.com/beautifulsoup-extracting-urls/ 
@@ -47,6 +46,7 @@ def extract_next_links(url, resp):
                 text_list = soup.text # returns string of all readable text 
                 text_list = text_list.split('\n')
                 
+                # tokenize the text on the web page and store it in word_list
                 for text in text_list:
                     text = re.sub(r"[^a-zA-Z0-9 :]", " ", text)
                     text_split = text.split()
@@ -60,7 +60,7 @@ def extract_next_links(url, resp):
                     URLs_file.write(url + '\n')
                     # iterate through tags to obtain links present on web page
                     for tag in a_tags:
-                        list_links.append(urllib.parse.urljoin(d, tag.get('href')).split('#')[0]) #adding links to list after defragging the URL
+                        list_links.append(urllib.parse.urljoin(urlunparse(parsed_url), tag.get('href')).split('#')[0]) #adding links to list after defragging the URL
 
             except:
                 print("Error processing next URLs")
