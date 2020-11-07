@@ -133,9 +133,17 @@ def isValid_netloc(parsed_url):
     sd = process_sd(netloc)
 
     counter = 0
+
+    # Determines the number of parts that constitute the host name of the URL, which
+    # includes domains (first and second levels) and subdomains (subsequent levels),
+    # by counting the number of periods. Each part is separated by a period. The
+    # number of parts of the host name is thus the number of periods plus one.
     for element in str(netloc):
         if element == ".":
             counter += 1
+
+    # If the number of parts is greater than three, remove
+    # the lowest-level domain (first part) of the URL.
     if counter >= 3:
         netloc_parts = netloc.split(".")
         netloc_parts.pop(0)
